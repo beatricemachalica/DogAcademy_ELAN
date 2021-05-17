@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations sur le maître
+{% endblock %}
+
+{% block container %}
+	<h1>Informations sur le chien</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Nom du chien</th>
+				<th>Maitre</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ chien.nom }}</td>
+				<td>{{ chien.maitre.prenom ~ ' '~ chien.maitre.nom }}</td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}
