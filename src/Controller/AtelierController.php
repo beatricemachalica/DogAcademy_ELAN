@@ -25,12 +25,4 @@ class AtelierController extends AbstractController
             'ateliers' => $ateliers,
         ]);
     }
-
-    /**
-     * @Route("/{id}", name="atelier_show", methods="GET")
-     */
-    public function show(Atelier $atelier): Response
-    {
-        return $this->render('atelier/show.html.twig', ['atelier' => $atelier]);
-    }
 }

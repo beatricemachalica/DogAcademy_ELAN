@@ -16,7 +16,9 @@
 		<tbody>
 			{% for chien in chiens %}
 				<tr>
-					<td>{{ chien.nom }}</td>
+					<td>
+						<a href="{{ path('chien_show', {'id': chien.id}) }}">{{ chien.nom }}</a>
+					</td>
 					<td>{{ chien.maitre.prenom ~ ' '~ chien.maitre.nom }}</td>
 				</tr>
 			{% endfor %}

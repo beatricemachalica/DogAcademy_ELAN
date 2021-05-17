@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations sur la session
+{% endblock %}
+
+{% block container %}
+	<h1>Informations sur la session</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Formation</th>
+				<th>Places</th>
+				<th>Date de début</th>
+				<th>Date de fin</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ session.formation.nom }}</td>
+				<td>{{ session.nbPlace }}</td>
+				<td>{{ session.dateDebut | date('d-m-Y') }}</td>
+				<td>{{ session.dateFin | date('d-m-Y') }}</td>
+				<td>
+					<a href="{{ path('session_edit', {id: session.id}) }}">Editer</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}

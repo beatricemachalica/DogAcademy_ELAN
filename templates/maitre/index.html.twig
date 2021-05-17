@@ -6,21 +6,17 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Nom et Prénom du Maitre</th>
-				<th>Date de naissance</th>
+				<th>Nom et Prénom des Maitres</th>
 				<th>Ville</th>
-				<th>Mail</th>
-				<th>Téléphone</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for maitre in maitres %}
 				<tr>
-					<td>{{ maitre.nom ~ ' '~ maitre.prenom }}</td>
-					<td>{{ maitre.dateNaissance | date("d/m/Y") }}</td>
+					<td>
+						<a href="{{ path('maitre_show', {'id': maitre.id}) }}">{{ maitre.nom ~ ' '~ maitre.prenom }}</a>
+					</td>
 					<td>{{ maitre.ville }}</td>
-					<td>{{ maitre.mail }}</td>
-					<td>{{ maitre.telephone }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>

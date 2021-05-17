@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Informations sur le maître
+{% endblock %}
+
+{% block container %}
+	<h1>Information du maître</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Nom et Prénom des Maitres</th>
+				<th>Date de naissance</th>
+				<th>Ville</th>
+				<th>Mail</th>
+				<th>Téléphone</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ maitre.nom ~ ' '~ maitre.prenom }}</td>
+				<td>{{ maitre.dateNaissance | date("d/m/Y") }}</td>
+				<td>{{ maitre.ville }}</td>
+				<td>{{ maitre.mail }}</td>
+				<td>{{ maitre.telephone }}</td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}

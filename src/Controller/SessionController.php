@@ -54,7 +54,6 @@ class SessionController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/{id}", name="session_show")
      */
