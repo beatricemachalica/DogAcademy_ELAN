@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SessionController extends AbstractController
 {
     /**
-     * @Route("/session", name="session")
+     * @Route("/sessions", name="sessions_index")
      */
     public function index(): Response
     {

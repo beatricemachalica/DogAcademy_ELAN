@@ -1,20 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MaitreController!{% endblock %}
+{% block container %}
+	<h1>Liste des maitres inscrits</h1>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/laragon/www/DogAcademy/src/Controller/MaitreController.php'|file_link(0) }}">src/Controller/MaitreController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/laragon/www/DogAcademy/templates/maitre/index.html.twig'|file_link(0) }}">templates/maitre/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<table>
+		<thead>
+			<tr>
+				<th>Nom et Prénom du Maitre</th>
+				<th>Date de naissance</th>
+				<th>Ville</th>
+				<th>Mail</th>
+				<th>Téléphone</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for maitre in maitres %}
+				<tr>
+					<td>{{ maitre.nom ~ ' '~ maitre.prenom }}</td>
+					<td>{{ maitre.dateNaissance | date("d/m/Y") }}</td>
+					<td>{{ maitre.ville }}</td>
+					<td>{{ maitre.mail }}</td>
+					<td>{{ maitre.telephone }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}
