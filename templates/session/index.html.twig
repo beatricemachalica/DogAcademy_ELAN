@@ -1,20 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SessionController!{% endblock %}
+{% block title %}Liste des sessions{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block container %}
+    <h1>Liste des sessions)</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/laragon/www/DogAcademy/src/Controller/SessionController.php'|file_link(0) }}">src/Controller/SessionController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/laragon/www/DogAcademy/templates/session/index.html.twig'|file_link(0) }}">templates/session/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Formation</th>
+                <th>Places</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for session in sessions %}
+            <tr>
+                <td>{{ session.formation_id.nom }}</td>
+                <td>{{ session.nb_place }}</td>
+                <td>{{ session.date_debut | date('d-m-Y') }}</td>
+                <td>{{ session.date_fin | date('d-m-Y') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
