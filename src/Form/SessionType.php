@@ -19,7 +19,7 @@ class SessionType extends AbstractType
   {
     $builder
       ->add('formation', EntityType::class, [
-        'label' => 'Formation',
+        'label' => 'Nom de la Formation',
         'class' => Formation::class,
         'required'   => true,
         'choice_label' => 'nom',
@@ -36,7 +36,7 @@ class SessionType extends AbstractType
         'widget' => 'single_text',
       ])
       ->add('envoyer', SubmitType::class, [
-        'attr' => ['class' => 'uk-button uk-button-secondary uk-margin-top'],
+        'attr' => ['class' => 'btn btn-outline-primary'],
       ]);
   }
 

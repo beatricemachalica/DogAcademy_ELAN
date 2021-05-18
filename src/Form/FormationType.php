@@ -6,15 +6,24 @@ use App\Entity\Formation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class FormationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('description')
-        ;
+            ->add('nom', TextType::class, [
+                'required'   => true,
+            ])
+            ->add('description', TextareaType::class, [
+                'required' => false,
+            ])
+            ->add('envoyer', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-outline-primary'],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

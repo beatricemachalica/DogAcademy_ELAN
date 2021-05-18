@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Maitre;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\MaitreType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/maitres")
@@ -23,6 +25,32 @@ class MaitreController extends AbstractController
 
         return $this->render('maitre/index.html.twig', [
             'maitres' => $maitres,
+        ]);
+    }
+
+    /**
+     * @Route("/new", name="maitre_add")
+     * @Route("/edit/{id}", name="maitre_edit")
+     */
+    public function new(Request $request): Response
+    {
+        $maitre = new Maitre();
+        $form = $this->createForm(MaitreType::class, $maitre);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $maitre = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($maitre);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('maitres');
+        }
+
+        return $this->render('maitre/new.html.twig', [
+            'formAddMaitre' => $form->createView(),
         ]);
     }
 
