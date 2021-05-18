@@ -1,11 +1,13 @@
-# English README
+_English README_
 
-## Creation of an administrative management website for a dog training center
+# Creation of an administrative management website for a dog training center
 
-### A group project for ELAN school and the main contributors are : MACHALICA Béatrice and TERENCE Mathieu
+### A group project for ELAN school and the main contributors are : MACHALICA Béatrice and MATHIEU Terence
 
 Languages ​​and tools used: PHP 7 and Symfony 5, HTML / TWIG, CSS, Bootstrap, JavaScript.
 Templating and design pattern (MVC).
+
+The main goal of this project is to improve our skills and knowledge mainly in **Symfony** and to improve our team spirit (AGILE Framework).
 
 Features:
 
@@ -25,15 +27,16 @@ Security :
 
 Trainers: Stéphane SMAIL, Mickael MURMANN and Gilles MUESS.
 
-# French README
+_French README_
 
-## Projet de création d'un site de gestion administrative pour un centre de formation
+# Projet de création d'un site de gestion administrative pour un centre de formation
 
-### Projet de groupe avec MACHALICA Béatrice et TERENCE Mathieu
+### Projet de groupe avec MACHALICA Béatrice et MATHIEUR Terence
 
 Langages et outils utilisés : PHP 7 et Symfony 5, HTML/TWIG, CSS, Bootstrap, JavaScript.
-
 Templating et design pattern = utilisation de l'architecture MVC.
+
+Le but principal de ce projet est de prendre en main et améliorer nos connaissances sur le framework Symfony 5 et d'améliorer notre capacité à travailler en équipe (méthode AGILE).
 
 Fonctionnalités :
 
