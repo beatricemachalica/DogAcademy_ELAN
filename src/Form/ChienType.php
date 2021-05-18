@@ -27,7 +27,11 @@ class ChienType extends AbstractType
                 'required'   => true,
                 'choice_label' => 'nom',
             ])
-            // message d'erreur ici => problème avec l'entité
+            // error :
+            // Entity of type "Doctrine\Common\Collections\ArrayCollection" 
+            // passed to the choice field must be managed. 
+            // Maybe you forget to persist it in the entity manager?
+
             // ->add('sessions', EntityType::class, [
             //     'label' => 'Session de Formation',
             //     'class' => Session::class,
