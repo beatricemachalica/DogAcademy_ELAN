@@ -19,10 +19,11 @@ header {
 }
 .bannerFigure {
   position: relative;
+  width: 85%;
+  margin: auto;
 }
 .banner {
-  height: 55vh;
-  width: 100%;
+  height: 50vh;
 }
 h1 {
   margin-top: 25px;
@@ -31,11 +32,21 @@ h1 {
   font-size: 1.5rem;
   position: absolute;
   top: 170px;
-  right: 290px;
+  right: 300px;
 }
 .logoSpan {
   color: rgb(37, 37, 119);
   font-family: "Roboto Slab", serif;
   font-size: 2rem;
   font-weight: bold;
+}
+footer {
+  width: 100%;
+  height: 65px;
+  background-color: rgb(40, 40, 40);
+  color: white;
+  font-family: "Roboto Slab", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

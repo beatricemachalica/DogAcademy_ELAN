@@ -27,6 +27,7 @@ class ChienType extends AbstractType
                 'required'   => true,
                 'choice_label' => 'nom',
             ])
+            // message d'erreur ici => problème avec l'entité
             // ->add('sessions', EntityType::class, [
             //     'label' => 'Session de Formation',
             //     'class' => Session::class,
