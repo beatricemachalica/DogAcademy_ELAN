@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Formation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,6 +24,34 @@ class FormationController extends AbstractController
 
         return $this->render('formation/index.html.twig', [
             'formations' => $formations,
+        ]);
+    }
+    /**
+     * @Route("/new", name="formation_add")
+     * @Route("/edit/{id}", name="formation_edit")
+     */
+    public function new(Request $request, Formation $formation = null): Response
+    {
+        if (!$formation) {
+            $formation = new Formation();
+        }
+
+        $form = $this->createForm(FormationType::class, $formation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $formation = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($formation);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('session');
+        }
+
+        return $this->render('formation/new.html.twig', [
+            'formAddFormation' => $form->createView(),
         ]);
     }
 }

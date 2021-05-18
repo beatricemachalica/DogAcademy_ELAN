@@ -4,13 +4,13 @@
 {% endblock %}
 
 {% block container %}
-	<h1>Liste des formations</h1>
-
-	<table>
+	<h1 class="text-center">Liste des Formations</h1>
+	<a href="{{ path('formation_add') }}">Ajouter une formation</a>
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Intitulé de la Formation</th>
-				<th>Description</th>
+				<th scope="col">Intitulés des formations</th>
+				<th scope="col">Description</th>
 			</tr>
 		</thead>
 		<tbody>

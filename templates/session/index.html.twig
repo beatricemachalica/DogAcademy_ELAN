@@ -4,23 +4,23 @@
 {% endblock %}
 
 {% block container %}
-	<h1>Liste des sessions</h1>
+	<h1 class="text-center">Liste des Sessions</h1>
 
 	<a href="{{ path('session_add') }}">Ajouter une session</a>
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Formation</th>
-				<th>Places</th>
-				<th>Date de début</th>
-				<th>Date de fin</th>
+				<th scope="col">Formation</th>
+				<th scope="col">Places</th>
+				<th scope="col">Date de début</th>
+				<th scope="col">Date de fin</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for session in sessions %}
 				<tr>
-					<td>
+					<td scope="row">
 						<a href="{{path('session_show', {'id': session.id} )}}">{{ session.formation.nom }}</a>
 					</td>
 					<td>{{ session.nbPlace }}</td>

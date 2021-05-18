@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block container %}
-	<h1>Liste des maitres inscrits</h1>
+	<h1 class="text-center">Liste des Maîtres inscrits</h1>
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Nom et Prénom des Maitres</th>
-				<th>Ville</th>
+				<th scope="col">Nom et Prénom des Maitres</th>
+				<th scope="col">Ville</th>
+				<th scope="col">Chien(s)</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -17,6 +18,7 @@
 						<a href="{{ path('maitre_show', {'id': maitre.id}) }}">{{ maitre.nom ~ ' '~ maitre.prenom }}</a>
 					</td>
 					<td>{{ maitre.ville }}</td>
+					<td>{{ maitre.chien.nom }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>
