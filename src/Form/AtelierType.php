@@ -26,9 +26,6 @@ class AtelierType extends AbstractType
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'libelle',
-            ])
-            ->add('envoyer', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-outline-primary'],
             ]);
     }
 

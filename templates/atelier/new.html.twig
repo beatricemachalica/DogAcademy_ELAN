@@ -1,8 +1,34 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ajout d'un nouveau Atelier
+{% block title %}Atelier
 {% endblock %}
 
 {% block container %}
-	<h1>Ajout d'un nouveau Atelier</h1>
-	{{ form(formAddAtelier) }}{% endblock %}
+	{% if editMode %}
+		<h1>Modifier l'Atelier</h1>
+	{% else %}
+		<h1>Ajout d'un nouveau Atelier</h1>
+	{% endif %}
+
+	{# simplement afficher le formulaire #}
+	{# {{ form(formAddAtelier) }} #}
+
+	{# début du contenu du formulaire #}
+	{{form_start(formAddAtelier)}}
+
+	{{form_row(formAddAtelier.libelle)}}
+	{{form_row(formAddAtelier.description)}}
+	{{form_row(formAddAtelier.categorie)}}
+
+	{# submit button #}
+		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
+			Modifier
+		{% else %}
+			Ajouter
+		{% endif %}
+	</button>
+
+	{# fin du formulaire #}
+	{{form_end(formAddAtelier)}}
+
+{% endblock %}

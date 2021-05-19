@@ -1,8 +1,34 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ajout d'un Chien
+{% block title %}Chien
 {% endblock %}
 
 {% block container %}
-	<h1>Ajout d'un Chien</h1>
-	{{ form(formAddChien) }}{% endblock %}
+	{% if editMode %}
+		<h1>Modifier les informations d'un chien</h1>
+	{% else %}
+		<h1>Ajout d'un nouveau chien</h1>
+	{% endif %}
+
+	{# simplement afficher le formulaire #}
+	{# {{ form(formAddChien) }} #}
+
+	{# début du contenu du formulaire #}
+	{{form_start(formAddChien)}}
+
+	{{form_row(formAddChien.nom)}}
+	{{form_row(formAddChien.maitre)}}
+	{# {{form_row(formAddChien.sessions)}} #}
+
+	{# submit button #}
+		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
+			Modifier
+		{% else %}
+			Ajouter
+		{% endif %}
+	</button>
+
+	{# fin du formulaire #}
+	{{form_end(formAddChien)}}
+
+{% endblock %}

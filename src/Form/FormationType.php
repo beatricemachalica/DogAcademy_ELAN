@@ -20,9 +20,6 @@ class FormationType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
-            ])
-            ->add('envoyer', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-outline-primary'],
             ]);
     }
 

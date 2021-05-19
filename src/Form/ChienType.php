@@ -26,21 +26,18 @@ class ChienType extends AbstractType
                 'class' => Maitre::class,
                 'required'   => true,
                 'choice_label' => 'nom',
-            ])
-            // error :
-            // Entity of type "Doctrine\Common\Collections\ArrayCollection" 
-            // passed to the choice field must be managed. 
-            // Maybe you forget to persist it in the entity manager?
-
-            // ->add('sessions', EntityType::class, [
-            //     'label' => 'Session de Formation',
-            //     'class' => Session::class,
-            //     'required'   => true,
-            //     'choice_label' => 'formation',
-            // ])
-            ->add('envoyer', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-outline-primary'],
             ]);
+        // error :
+        // Entity of type "Doctrine\Common\Collections\ArrayCollection" 
+        // passed to the choice field must be managed. 
+        // Maybe you forget to persist it in the entity manager?
+
+        // ->add('sessions', EntityType::class, [
+        //     'label' => 'Session de Formation',
+        //     'class' => Session::class,
+        //     'required'   => true,
+        //     'choice_label' => 'formation',
+        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

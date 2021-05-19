@@ -11,6 +11,7 @@
 			<tr>
 				<th scope="col">Liste des Ateliers</th>
 				<th scope="col">Description</th>
+				<th scope="col">Catégorie</th>
 				<th scope="col"></th>
 			</tr>
 		</thead>
@@ -19,6 +20,7 @@
 				<tr>
 					<td>{{ atelier.libelle |capitalize }}</td>
 					<td>{{ atelier.description }}</td>
+					<td>{{ atelier.categorie.libelle }}</td>
 					<td>
 						<a href="{{ path('atelier_edit', {id: atelier.id}) }}">Editer</a>
 					</td>

@@ -35,6 +35,7 @@ class SessionType extends AbstractType
         'label' => 'Date de fin',
         'widget' => 'single_text',
       ]);
+    // not needed anymore
     // ->add('envoyer', SubmitType::class, [
     //   'attr' => ['class' => 'btn btn-outline-primary'],
     // ]);

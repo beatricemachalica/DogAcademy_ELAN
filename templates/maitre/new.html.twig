@@ -1,9 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajout d'un maître
+{% block title %}Maître
 {% endblock %}
 
 {% block container %}
-	<h1>Ajout d'un Maitre</h1>
+	{% if editMode %}
+		<h1>Modifier les informations du Maître</h1>
+	{% else %}
+		<h1>Ajout d'un nouveau Maître</h1>
+	{% endif %}
 
-	{{ form(formAddMaitre) }}{% endblock %}
+	{# simplement afficher le formulaire #}
+	{# {{ form(formAddMaitre) }} #}
+
+	{# début du contenu du formulaire #}
+	{{form_start(formAddMaitre)}}
+
+	{{form_row(formAddMaitre.nom)}}
+	{{form_row(formAddMaitre.prenom)}}
+	{{form_row(formAddMaitre.dateNaissance)}}
+	{{form_row(formAddMaitre.ville)}}
+	{{form_row(formAddMaitre.mail)}}
+	{{form_row(formAddMaitre.telephone)}}
+
+
+	{# submit button #}
+		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
+			Modifier
+		{% else %}
+			Ajouter
+		{% endif %}
+	</button>
+
+	{# fin du formulaire #}
+	{{form_end(formAddMaitre)}}
+
+{% endblock %}

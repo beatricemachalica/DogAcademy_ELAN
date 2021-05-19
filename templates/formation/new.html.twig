@@ -1,8 +1,33 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Ajout d'une formation
+{% block title %}Formation
 {% endblock %}
 
 {% block container %}
-	<h1>Ajout d'une Formation</h1>
-	{{ form(formAddFormation) }}{% endblock %}
+	{% if editMode %}
+		<h1>Modifier une formation</h1>
+	{% else %}
+		<h1>Ajout d'une nouvelle formation</h1>
+	{% endif %}
+
+	{# simplement afficher le formulaire #}
+	{# {{ form(formAddFormation) }} #}
+
+	{# début du contenu du formulaire #}
+	{{form_start(formAddFormation)}}
+
+	{{form_row(formAddFormation.nom)}}
+	{{form_row(formAddFormation.description)}}
+
+	{# submit button #}
+		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
+			Modifier
+		{% else %}
+			Ajouter
+		{% endif %}
+	</button>
+
+	{# fin du formulaire #}
+	{{form_end(formAddFormation)}}
+
+{% endblock %}

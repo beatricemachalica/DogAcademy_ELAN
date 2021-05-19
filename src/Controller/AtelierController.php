@@ -48,7 +48,7 @@ class AtelierController extends AbstractController
             $entityManager->persist($atelier);
             $entityManager->flush();
 
-            return $this->redirectToRoute('ateliers');
+            return $this->redirectToRoute('ateliers_index');
         }
 
         return $this->render('atelier/new.html.twig', [

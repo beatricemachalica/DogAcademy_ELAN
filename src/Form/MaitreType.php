@@ -35,9 +35,6 @@ class MaitreType extends AbstractType
             ])
             ->add('telephone', TelType::class, [
                 'required' => false,
-            ])
-            ->add('envoyer', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-outline-primary'],
             ]);
     }
 
