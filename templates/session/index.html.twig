@@ -15,6 +15,7 @@
 				<th scope="col">Places</th>
 				<th scope="col">Date de début</th>
 				<th scope="col">Date de fin</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,6 +29,7 @@
 					<td>{{ session.dateFin | date('d-m-Y') }}</td>
 					<td>
 						<a href="{{ path('session_edit', {id: session.id}) }}">Editer</a>
+            <a href="{{ path('session_delete', {id: session.id}) }}">Supprimer</a>
 					</td>
 				</tr>
 			{% endfor %}

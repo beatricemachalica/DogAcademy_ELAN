@@ -46,7 +46,7 @@ class SessionController extends AbstractController
             $entityManager->persist($session);
             $entityManager->flush();
 
-            return $this->redirectToRoute('session');
+            return $this->redirectToRoute('sessions_index');
         }
 
         return $this->render('session/new.html.twig', [
@@ -62,5 +62,17 @@ class SessionController extends AbstractController
         return $this->render('session/show.html.twig', [
             'session' => $session
         ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="session_delete")
+     */
+    public function delete(Session $session): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('sessions_index');
     }
 }
