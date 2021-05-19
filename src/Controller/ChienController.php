@@ -32,9 +32,12 @@ class ChienController extends AbstractController
      * @Route("/new", name="chien_add")
      * @Route("/edit/{id}", name="chien_edit")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Chien $chien = null): Response
     {
-        $chien = new Chien();
+        if (!$chien) {
+            $chien = new Chien();
+        }
+
         $form = $this->createForm(ChienType::class, $chien);
 
         $form->handleRequest($request);

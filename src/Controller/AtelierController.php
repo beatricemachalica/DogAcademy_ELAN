@@ -32,9 +32,11 @@ class AtelierController extends AbstractController
      * @Route("/new", name="atelier_add")
      * @Route("/edit/{id}", name="atelier_edit")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Atelier $atelier = null): Response
     {
-        $atelier = new Atelier();
+        if (!$atelier) {
+            $atelier = new Atelier();
+        }
         $form = $this->createForm(AtelierType::class, $atelier);
 
         $form->handleRequest($request);

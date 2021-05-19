@@ -32,9 +32,11 @@ class FormationController extends AbstractController
      * @Route("/new", name="formation_add")
      * @Route("/edit/{id}", name="formation_edit")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Formation $formation = null): Response
     {
-        $formation = new Formation();
+        if (!$formation) {
+            $formation = new Formation();
+        }
 
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
