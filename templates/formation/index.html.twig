@@ -11,6 +11,7 @@
 			<tr>
 				<th scope="col">Intitulés des formations</th>
 				<th scope="col">Description</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,6 +19,10 @@
 				<tr>
 					<td>{{ formation.nom }}</td>
 					<td>{{ formation.description }}</td>
+					<td>
+						<a href="{{ path('formation_edit', {id: formation.id}) }}">Editer</a>
+            <a href="{{ path('formation_delete', {id: formation.id}) }}">Supprimer</a>
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>

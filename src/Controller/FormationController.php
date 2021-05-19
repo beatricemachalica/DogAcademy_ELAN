@@ -49,11 +49,23 @@ class FormationController extends AbstractController
             $entityManager->persist($formation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('formations');
+            return $this->redirectToRoute('formations_index');
         }
 
         return $this->render('formation/new.html.twig', [
             'formAddFormation' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="formation_delete")
+     */
+    public function delete(Formation $formation): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($formation);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('formations_index');
     }
 }
