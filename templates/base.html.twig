@@ -66,29 +66,18 @@
 						</ul>
 						<form class="form-inline my-2 my-lg-0">
 							<input class="form-control mr-sm-2" type="search" placeholder="Chien policier" aria-label="Search">
-							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+							<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Rechercher</button>
 						</form>
 					</div>
 				</nav>
-				<figure class="bannerFigure">
-					<img class="banner" src="{{ asset('img/banner.jpg') }}" alt="banner">
-					<figcaption class="figcaptionBanner">
-						<span class="logoSpan">DogAcademy</span>
-						<br>
-						<em>
-							Des formations assez dignes pour le meilleur ami de l'homme.
-						</em>
-					</figcaption>
-				</figure>
+				{% block banner %}{% endblock %}
 			</header>
+
 			{# container #}
 			<div class="container">
 				{% block container %}{% endblock %}
 			</div>
-
-			<footer>
-				Terence Mathieu & Béatrice Machalica | Dog Academy | 2021 Mentions légales
-			</footer>
 		{% endblock %}
+		{% block footer %}{% endblock %}
 	</body>
 </html>

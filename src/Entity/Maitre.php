@@ -6,6 +6,7 @@ use App\Repository\MaitreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MaitreRepository::class)
@@ -21,16 +22,19 @@ class Maitre
 
     /**
      * @ORM\Column(type="string", length=55)
+     * @Assert\Length(max=55)
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=65)
+     * @Assert\Email(message = "Le mail n'est pas valide")
      */
     private $mail;
 
     /**
      * @ORM\Column(type="string", length=55)
+     * @Assert\Length(max=55)
      */
     private $prenom;
 
@@ -41,6 +45,7 @@ class Maitre
 
     /**
      * @ORM\Column(type="string", length=55)
+     * @Assert\Length(max=55)
      */
     private $ville;
 

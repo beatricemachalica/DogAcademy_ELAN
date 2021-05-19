@@ -3,11 +3,22 @@
 {% block title %}Bienvenue
 {% endblock %}
 
+{# banner #}
+{% block banner %}
+	<figure class="bannerFigure">
+		<img class="banner" src="{{ asset('img/banner.jpg') }}" alt="banner">
+		<figcaption class="figcaptionBanner">
+			<span class="logoSpan">Bienvenue sur DogAcademy</span>
+			<br>
+			<em>
+				Des formations assez dignes pour le meilleur ami de l'homme.
+			</em>
+		</figcaption>
+	</figure>
+{% endblock %}
+
+{# home page #}
 {% block container %}
-	<h1 class="text-center">
-		Bienvenue sur DogAcademy
-	</h1>
-	<hr>
 	<article>
 		<h2>À propos
 			<img class="logo" src="{{ asset('img/coeur.png') }}" alt="logo">
@@ -49,4 +60,11 @@
 			</div>
 		</div>
 	</article>
+{% endblock %}
+
+{# footer #}
+{% block footer %}
+	<footer>
+		Terence Mathieu & Béatrice Machalica | Dog Academy | 2021 Mentions légales
+	</footer>
 {% endblock %}
