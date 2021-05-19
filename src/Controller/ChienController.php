@@ -49,7 +49,7 @@ class ChienController extends AbstractController
             $entityManager->persist($chien);
             $entityManager->flush();
 
-            return $this->redirectToRoute('chiens');
+            return $this->redirectToRoute('chiens_index');
         }
 
         return $this->render('chien/new.html.twig', [

@@ -49,7 +49,7 @@ class MaitreController extends AbstractController
             $entityManager->persist($maitre);
             $entityManager->flush();
 
-            return $this->redirectToRoute('maitres');
+            return $this->redirectToRoute('maitres_index');
         }
 
         return $this->render('maitre/new.html.twig', [
