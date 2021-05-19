@@ -19,7 +19,7 @@
 						<a href="{{ path('maitre_show', {'id': maitre.id}) }}">{{ maitre.nom ~ ' '~ maitre.prenom }}</a>
 					</td>
 					<td>{{ maitre.ville }}</td>
-					<td>{{ maitre.chien.nom }}</td>
+					{# <td>{{ maitre.chien.nom }}</td> #}
 				</tr>
 			{% endfor %}
 		</tbody>
