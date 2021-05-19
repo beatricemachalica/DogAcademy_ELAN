@@ -32,9 +32,12 @@ class MaitreController extends AbstractController
      * @Route("/new", name="maitre_add")
      * @Route("/edit/{id}", name="maitre_edit")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Maitre $maitre = null): Response
     {
-        $maitre = new Maitre();
+        if (!$maitre) {
+            $maitre = new Maitre();
+        }
+
         $form = $this->createForm(MaitreType::class, $maitre);
 
         $form->handleRequest($request);
