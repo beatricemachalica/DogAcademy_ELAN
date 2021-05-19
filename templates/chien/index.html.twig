@@ -11,15 +11,22 @@
 			<tr>
 				<th scope="col">Nom du chien</th>
 				<th scope="col">Maitre</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for chien in chiens %}
 				<tr>
 					<td>
-						<a href="{{ path('chien_show', {'id': chien.id}) }}">{{ chien.nom }}</a>
+						<a href="{{ path('chien_show', {'id': chien.id}) }}">{{ chien.nom |capitalize }}</a>
 					</td>
-					<td>{{ chien.maitre.prenom ~ ' '~ chien.maitre.nom }}</td>
+					<td>{{ chien.maitre.prenom |capitalize ~ ' '~ chien.maitre.nom |capitalize }}</td>
+					<td>
+						<a href="{{ path('chien_edit', {id: chien.id}) }}">Editer</a>
+					</td>
+					<td>
+						<a href="{{ path('chien_delete', {id: chien.id}) }}">Supprimer</a>
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>

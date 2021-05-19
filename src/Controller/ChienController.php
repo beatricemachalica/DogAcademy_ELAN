@@ -54,6 +54,7 @@ class ChienController extends AbstractController
 
         return $this->render('chien/new.html.twig', [
             'formAddChien' => $form->createView(),
+            'editMode' => $chien->getId() !== null
         ]);
     }
 
@@ -63,5 +64,17 @@ class ChienController extends AbstractController
     public function show(Chien $chien): Response
     {
         return $this->render('chien/show.html.twig', ['chien' => $chien]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="chien_delete")
+     */
+    public function delete(Chien $chien): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($chien);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('chiens_index');
     }
 }

@@ -15,7 +15,7 @@
 		<tbody>
 			{% for categorie in categories %}
 				<tr>
-					<td>{{ categorie.libelle }}</td>
+					<td>{{ categorie.libelle |capitalize }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>

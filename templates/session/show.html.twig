@@ -6,18 +6,18 @@
 {% block container %}
 	<h1>Informations sur la session</h1>
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Formation</th>
-				<th>Places</th>
-				<th>Date de début</th>
-				<th>Date de fin</th>
+				<th scope="col">Formation</th>
+				<th scope="col">Places</th>
+				<th scope="col">Date de début</th>
+				<th scope="col">Date de fin</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>{{ session.formation.nom }}</td>
+				<td>{{ session.formation.nom |capitalize }}</td>
 				<td>{{ session.nbPlace }}</td>
 				<td>{{ session.dateDebut | date('d-m-Y') }}</td>
 				<td>{{ session.dateFin | date('d-m-Y') }}</td>

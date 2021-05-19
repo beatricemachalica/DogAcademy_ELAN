@@ -22,14 +22,16 @@
 			{% for session in sessions %}
 				<tr>
 					<td scope="row">
-						<a href="{{path('session_show', {'id': session.id} )}}">{{ session.formation.nom }}</a>
+						<a href="{{path('session_show', {'id': session.id} )}}">{{ session.formation.nom |capitalize }}</a>
 					</td>
 					<td>{{ session.nbPlace }}</td>
 					<td>{{ session.dateDebut | date('d-m-Y') }}</td>
 					<td>{{ session.dateFin | date('d-m-Y') }}</td>
 					<td>
 						<a href="{{ path('session_edit', {id: session.id}) }}">Editer</a>
-            <a href="{{ path('session_delete', {id: session.id}) }}">Supprimer</a>
+					</td>
+					<td>
+						<a href="{{ path('session_delete', {id: session.id}) }}">Supprimer</a>
 					</td>
 				</tr>
 			{% endfor %}

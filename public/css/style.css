@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -8,6 +9,12 @@ img {
 .logo {
   width: 30px;
   height: 30px;
+}
+em {
+  font-family: "Satisfy", cursive;
+}
+.flex {
+  display: flex;
 }
 body {
   margin: 0;
@@ -19,26 +26,31 @@ header {
 }
 .bannerFigure {
   position: relative;
-  width: 85%;
+  width: 100%;
   margin: auto;
 }
 .banner {
-  height: 50vh;
+  height: 45vh;
 }
-h1 {
-  margin-top: 25px;
+h1,
+h2 {
+  margin: 25px 0 25px 0;
 }
+
 .figcaptionBanner {
   font-size: 1.5rem;
   position: absolute;
   top: 170px;
-  right: 300px;
+  right: 250px;
 }
 .logoSpan {
-  color: rgb(37, 37, 119);
+  color: rgba(0, 0, 0, 0.9);
   font-family: "Roboto Slab", serif;
   font-size: 2rem;
   font-weight: bold;
+}
+form {
+  margin: 30px 0 30px 0;
 }
 footer {
   width: 100%;

@@ -53,6 +53,19 @@ class AtelierController extends AbstractController
 
         return $this->render('atelier/new.html.twig', [
             'formAddAtelier' => $form->createView(),
+            'editMode' => $atelier->getId() !== null
         ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="atelier_delete")
+     */
+    public function delete(Atelier $atelier): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($atelier);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('ateliers_index');
     }
 }

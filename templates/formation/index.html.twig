@@ -17,11 +17,13 @@
 		<tbody>
 			{% for formation in formations %}
 				<tr>
-					<td>{{ formation.nom }}</td>
+					<td>{{ formation.nom |capitalize }}</td>
 					<td>{{ formation.description }}</td>
 					<td>
 						<a href="{{ path('formation_edit', {id: formation.id}) }}">Editer</a>
-            <a href="{{ path('formation_delete', {id: formation.id}) }}">Supprimer</a>
+					</td>
+					<td>
+						<a href="{{ path('formation_delete', {id: formation.id}) }}">Supprimer</a>
 					</td>
 				</tr>
 			{% endfor %}

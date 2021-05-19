@@ -1,10 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome
+{% block title %}Bienvenue
 {% endblock %}
 
 {% block container %}
 	<h1 class="text-center">
-		Bienvenue
+		Bienvenue sur DogAcademy
 	</h1>
+	<article>
+		<h2>À propos
+			<img class="logo" src="{{ asset('img/coeur.png') }}" alt="logo">
+		</h2>
+		<div>
+			<div>
+				<p>Lorem ipsum dolor sit amet.</p>
+			</div>
+			<div>
+				<p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, iste? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis consequatur ut vero esse quibusdam in, iusto temporibus impedit nobis omnis suscipit ipsum, debitis sequi?</p>
+				<p class="text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis consequatur ut vero esse quibusdam in, iusto temporibus impedit nobis omnis suscipit ipsum, debitis sequi?</p>
+			</div>
+		</div>
+	</article>
+	<article>
+		<h2>Le respect au centre de nos priorités</h2>
+		<div class="flex">
+			<div class="col-5">
+				<img src="{{ asset('img/respect.jpg') }}" alt="photo respect du chien">
+			</div>
+			<div class="col-7">
+				<p class="text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga, odit! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis consequatur ut vero esse quibusdam in, iusto temporibus impedit nobis omnis suscipit ipsum, debitis sequi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis consequatur ut vero esse quibusdam in, iusto temporibus impedit nobis omnis suscipit ipsum, debitis sequi?</p>
+				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex quis quo reprehenderit aliquam tempora, error in, vero doloremque, ducimus hic beatae quia facilis. Dolore fugit alias facilis, neque laborum non voluptatem delectus repudiandae sunt, maiores voluptatibus ducimus accusamus perspiciatis tempora vero nisi sint iure vel laboriosam illum odit a. Architecto labore adipisci quis doloremque sunt?</p>
+			</div>
+		</div>
+	</article>
 {% endblock %}

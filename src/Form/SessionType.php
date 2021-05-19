@@ -34,10 +34,10 @@ class SessionType extends AbstractType
       ->add('dateFin', DateType::class, [
         'label' => 'Date de fin',
         'widget' => 'single_text',
-      ])
-      ->add('envoyer', SubmitType::class, [
-        'attr' => ['class' => 'btn btn-outline-primary'],
       ]);
+    // ->add('envoyer', SubmitType::class, [
+    //   'attr' => ['class' => 'btn btn-outline-primary'],
+    // ]);
   }
 
   public function configureOptions(OptionsResolver $resolver)

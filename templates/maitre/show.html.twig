@@ -6,21 +6,21 @@
 {% block container %}
 	<h1>Information du maître</h1>
 
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Nom et Prénom des Maitres</th>
-				<th>Date de naissance</th>
-				<th>Ville</th>
-				<th>Mail</th>
-				<th>Téléphone</th>
+				<th scope="col">Nom et Prénom des Maitres</th>
+				<th scope="col">Date de naissance</th>
+				<th scope="col">Ville</th>
+				<th scope="col">Mail</th>
+				<th scope="col">Téléphone</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>{{ maitre.nom ~ ' '~ maitre.prenom }}</td>
+				<td>{{ maitre.nom |capitalize ~ ' '~ maitre.prenom |capitalize }}</td>
 				<td>{{ maitre.dateNaissance | date("d/m/Y") }}</td>
-				<td>{{ maitre.ville }}</td>
+				<td>{{ maitre.ville |capitalize }}</td>
 				<td>{{ maitre.mail }}</td>
 				<td>{{ maitre.telephone }}</td>
 			</tr>

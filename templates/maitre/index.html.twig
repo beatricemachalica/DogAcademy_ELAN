@@ -9,17 +9,22 @@
 			<tr>
 				<th scope="col">Nom et Prénom des Maitres</th>
 				<th scope="col">Ville</th>
-				<th scope="col">Chien(s)</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for maitre in maitres %}
 				<tr>
 					<td>
-						<a href="{{ path('maitre_show', {'id': maitre.id}) }}">{{ maitre.nom ~ ' '~ maitre.prenom }}</a>
+						<a href="{{ path('maitre_show', {'id': maitre.id}) }}">{{ maitre.nom |capitalize ~ ' '~ maitre.prenom |capitalize }}</a>
 					</td>
-					<td>{{ maitre.ville }}</td>
-					{# <td>{{ maitre.chien.nom }}</td> #}
+					<td>{{ maitre.ville |capitalize }}</td>
+					<td>
+						<a href="{{ path('maitre_edit', {id: maitre.id}) }}">Editer</a>
+					</td>
+					<td>
+						<a href="{{ path('maitre_delete', {id: maitre.id}) }}">Supprimer</a>
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>

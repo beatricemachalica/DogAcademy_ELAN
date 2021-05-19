@@ -54,6 +54,7 @@ class MaitreController extends AbstractController
 
         return $this->render('maitre/new.html.twig', [
             'formAddMaitre' => $form->createView(),
+            'editMode' => $maitre->getId() !== null
         ]);
     }
 
@@ -63,5 +64,17 @@ class MaitreController extends AbstractController
     public function show(Maitre $maitre): Response
     {
         return $this->render('maitre/show.html.twig', ['maitre' => $maitre]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="maitre_delete")
+     */
+    public function delete(Maitre $maitre): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($maitre);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('maitres_index');
     }
 }
