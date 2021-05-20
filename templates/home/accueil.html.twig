@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DogAcademy
+{% endblock %}
+
+{# banner #}
+{% block banner %}
+	<figure class="bannerFigure">
+		<img class="banner" src="{{ asset('img/banner.jpg') }}" alt="banner">
+		<figcaption class="figcaptionBanner">
+			<span class="logoSpan">Bienvenue sur DogAcademy</span>
+			<br>
+			<em>
+				Des formations dignes du meilleur ami de l'homme.
+			</em>
+		</figcaption>
+	</figure>
+{% endblock %}
+
+{# home page #}
+{% block container %}
+	<h2>Bienvenue
+		{{app.user.prenom |capitalize }}</h2>
+	<article>
+		<h2>À propos
+			<img class="logo" src="{{ asset('img/coeur.png') }}" alt="logo">
+		</h2>
+		<div>
+			<div>
+				<p>Lorem ipsum dolor sit amet.</p>
+			</div>
+			<div>
+				<p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, iste? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis consequatur ut vero esse quibusdam in, iusto temporibus impedit nobis omnis suscipit ipsum, debitis sequi?</p>
+				<p class="text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis consequatur ut vero esse quibusdam in, iusto temporibus impedit nobis omnis suscipit ipsum, debitis sequi?</p>
+			</div>
+		</div>
+	</article>
+	<hr>
+	<article>
+		<h2>Le respect au centre de nos priorités</h2>
+		<div class="flex">
+			<div class="col-5">
+				<img src="{{ asset('img/respect.jpg') }}" alt="photo respect du chien">
+			</div>
+			<div class="col-7">
+				<p class="text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga, odit! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis consequatur ut vero esse quibusdam in, iusto temporibus impedit nobis omnis suscipit ipsum, debitis sequi? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur reiciendis consequatur ut vero esse quibusdam in, iusto temporibus impedit nobis omnis suscipit ipsum, debitis sequi?</p>
+				<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex quis quo reprehenderit aliquam tempora, error in, vero doloremque, ducimus hic beatae quia facilis. Dolore fugit alias facilis, neque laborum non voluptatem delectus repudiandae sunt, maiores voluptatibus ducimus accusamus perspiciatis tempora vero nisi sint iure vel laboriosam illum odit a. Architecto labore adipisci quis doloremque sunt?</p>
+			</div>
+		</div>
+	</article>
+	<hr>
+	<article>
+		<h2>Un dressage de qualité</h2>
+		<div class="flex">
+			<div class="col-3"><img src="{{ asset('img/training.jpg') }}" alt="dog picture"></div>
+			<div class="col-3">
+				<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus enim vitae pariatur velit animi sint aliquam commodi culpa. Inventore perferendis voluptate, perspiciatis delectus natus velit in laborum quod esse itaque sunt animi odit deleniti tenetur sit, cupiditate reprehenderit repellendus architecto a. Ut ab expedita delectus laudantium molestias rem sapiente. Eligendi architecto accusamus atque aliquid facilis.</p>
+			</div>
+			<div class="col-3"><img src="{{ asset('img/beachDog.jpg') }}" alt="dog picture"></div>
+			<div class="col-3">
+				<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit, odio. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus enim vitae pariatur velit animi sint aliquam commodi culpa. Inventore perferendis voluptate, perspiciatis delectus natus velit in laborum quod esse itaque sunt animi odit deleniti tenetur sit, cupiditate reprehenderit repellendus architecto a. Ut ab expedita delectus laudantium molestias rem sapiente. Eligendi architecto accusamus atque aliquid facilis.</p>
+			</div>
+		</div>
+	</article>
+{% endblock %}
+
+{# footer #}
+{% block footer %}
+	<footer>
+		Terence Mathieu & Béatrice Machalica | Dog Academy | 2021 Mentions légales
+	</footer>
+{% endblock %}

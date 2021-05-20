@@ -32,7 +32,7 @@
 					class="navbar navbar-expand-lg navbar-light bg-light">
 
 					{# logo #}
-					<a class="navbar-brand" href="{{path('home')}}">
+					<a class="navbar-brand" href="{{path('accueil')}}">
 						Dog
 						<img class="logo" src="{{ asset('img/coeur.png') }}" alt="logo">
 						Academy
@@ -45,7 +45,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('home')}}">Accueil
+								<a class="nav-link" href="{{path('accueil')}}">Accueil
 								</a>
 							</li>
 							<li class="nav-item">
@@ -68,6 +68,23 @@
 									<a class="dropdown-item" href="#">Formateurs et intervenants</a>
 								</div>
 							</li>
+							{# account #}
+							<li class="nav-item">
+								<a class="nav-link" href="#">
+									Mon compte
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a>
+							</li>
+							{# on va vérifier le role à l'aide d'une méthode native 'is_granted' #}
+							{% if is_granted("ROLE_ADMIN") %}
+								<li class="nav-item">
+									<a class="nav-link" href="{{path('admin')}}">
+										Admin
+									</a>
+								</li>
+							{% endif %}
 						</ul>
 
 						{# search bar #}

@@ -17,6 +17,7 @@ class CategorieController extends AbstractController
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $categories = $this->getDoctrine()
             ->getRepository(Categorie::class)
             ->findAll();

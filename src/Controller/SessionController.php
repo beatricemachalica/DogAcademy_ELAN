@@ -16,6 +16,7 @@ class SessionController extends AbstractController
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $sessions = $this->getDoctrine()
             ->getRepository(Session::class)
             ->findBy([], ['id' => 'ASC']);
@@ -31,6 +32,7 @@ class SessionController extends AbstractController
      */
     public function new(Request $request, Session $session = null): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if (!$session) {
             $session = new Session();
         }
@@ -60,6 +62,7 @@ class SessionController extends AbstractController
      */
     public function show(Session $session): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('session/show.html.twig', [
             'session' => $session
         ]);
@@ -70,6 +73,7 @@ class SessionController extends AbstractController
      */
     public function delete(Session $session): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($session);
         $entityManager->flush();

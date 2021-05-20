@@ -19,6 +19,7 @@ class FormationController extends AbstractController
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $formations = $this->getDoctrine()
             ->getRepository(Formation::class)
             ->findAll();
@@ -34,6 +35,7 @@ class FormationController extends AbstractController
      */
     public function new(Request $request, Formation $formation = null): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if (!$formation) {
             $formation = new Formation();
         }
@@ -63,6 +65,7 @@ class FormationController extends AbstractController
      */
     public function delete(Formation $formation): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($formation);
         $entityManager->flush();

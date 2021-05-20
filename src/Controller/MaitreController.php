@@ -19,6 +19,7 @@ class MaitreController extends AbstractController
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $maitres = $this->getDoctrine()
             ->getRepository(Maitre::class)
             ->findAll();
@@ -34,6 +35,7 @@ class MaitreController extends AbstractController
      */
     public function new(Request $request, Maitre $maitre = null): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if (!$maitre) {
             $maitre = new Maitre();
         }
@@ -59,22 +61,24 @@ class MaitreController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="maitre_show", methods="GET")
-     */
-    public function show(Maitre $maitre): Response
-    {
-        return $this->render('maitre/show.html.twig', ['maitre' => $maitre]);
-    }
-
-    /**
      * @Route("/delete/{id}", name="maitre_delete")
      */
     public function delete(Maitre $maitre): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($maitre);
         $entityManager->flush();
 
         return $this->redirectToRoute('maitres_index');
+    }
+
+    /**
+     * @Route("/{id}", name="maitre_show", methods="GET")
+     */
+    public function show(Maitre $maitre): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('maitre/show.html.twig', ['maitre' => $maitre]);
     }
 }

@@ -19,6 +19,7 @@ class ChienController extends AbstractController
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $chiens = $this->getDoctrine()
             ->getRepository(Chien::class)
             ->findAll();
@@ -34,6 +35,7 @@ class ChienController extends AbstractController
      */
     public function new(Request $request, Chien $chien = null): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if (!$chien) {
             $chien = new Chien();
         }
@@ -63,6 +65,7 @@ class ChienController extends AbstractController
      */
     public function show(Chien $chien): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('chien/show.html.twig', ['chien' => $chien]);
     }
 
@@ -71,6 +74,7 @@ class ChienController extends AbstractController
      */
     public function delete(Chien $chien): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($chien);
         $entityManager->flush();

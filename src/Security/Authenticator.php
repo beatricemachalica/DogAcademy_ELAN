@@ -61,6 +61,7 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
     }
 
     // important function to get User => ex in twig: app.getUser.getPseudo
+    // on retrouve le token de sécurité CSRF
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
@@ -96,7 +97,9 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
             return new RedirectResponse($targetPath);
         }
 
-        // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        // si la connection a réussi
+        // redirection vers la page d'accueil du site 'accueil'
+        return new RedirectResponse($this->urlGenerator->generate('accueil'));
         throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }
 

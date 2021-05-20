@@ -22,16 +22,16 @@ body {
 }
 header {
   width: 100%;
-  background-color: #e4e9ee;
+  /* background-color: #e4e9ee; */
 }
 .bannerFigure {
   position: relative;
-  width: 70%;
+  width: 65%;
   margin: auto;
 }
 .banner {
   height: 40vh;
-  margin-bottom: 35px;
+  margin: 20px 0 10px 0;
   filter: drop-shadow(3px 1px 4px rgba(44, 44, 44, 0.7));
 }
 .navbar {

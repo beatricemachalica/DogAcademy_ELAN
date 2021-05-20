@@ -19,6 +19,7 @@ class AtelierController extends AbstractController
      */
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $ateliers = $this->getDoctrine()
             ->getRepository(Atelier::class)
             ->findAll();
@@ -34,6 +35,7 @@ class AtelierController extends AbstractController
      */
     public function new(Request $request, Atelier $atelier = null): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         if (!$atelier) {
             $atelier = new Atelier();
         }
@@ -62,6 +64,7 @@ class AtelierController extends AbstractController
      */
     public function delete(Atelier $atelier): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($atelier);
         $entityManager->flush();
