@@ -26,12 +26,13 @@ header {
 }
 .bannerFigure {
   position: relative;
-  width: 85%;
+  width: 70%;
   margin: auto;
 }
 .banner {
-  height: 45vh;
+  height: 40vh;
   margin-bottom: 35px;
+  filter: drop-shadow(3px 1px 4px rgba(44, 44, 44, 0.7));
 }
 .navbar {
   background-color: #e4e9ee !important;
@@ -41,7 +42,7 @@ h2 {
   margin: 25px 0 25px 0;
 }
 .figcaptionBanner {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   position: absolute;
   top: 170px;
   right: 250px;
