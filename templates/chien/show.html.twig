@@ -6,6 +6,8 @@
 {% block container %}
 	<h1>Informations sur le chien</h1>
 	{# ajouter photo, race, date de naissance, age #}
+
+	{# chiens #}
 	<table class="table">
 		<thead>
 			<tr>
@@ -20,4 +22,27 @@
 			</tr>
 		</tbody>
 	</table>
+
+	{# sessions #}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Intutilé de la Formation</th>
+				<th scope="col">Date début</th>
+				<th scope="col">Date fin</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for session in chien.sessions %}
+				<tr>
+					<td>{{ session.formation }}</td>
+					<td>{{ session.dateDebut }}</td>
+					<td>{{ session.dateFin }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<button class="btn btn-primary">
+		<a href="#" style="color:white; text-decoration: none;">Ajouter une session</a>
+	</button>
 {% endblock %}
