@@ -4,13 +4,15 @@
 {% endblock %}
 
 {% block container %}
-	<h1>Informations sur la session</h1>
+	<h1>Informations sur la session de Formation</h1>
 
+	{# détails #}
 	<table class="table">
 		<thead>
 			<tr>
-				<th scope="col">Formation</th>
+				<th scope="col">Nom de la Formation</th>
 				<th scope="col">Places</th>
+				<th scope="col">Places restantes</th>
 				<th scope="col">Date de début</th>
 				<th scope="col">Date de fin</th>
 			</tr>
@@ -19,6 +21,7 @@
 			<tr>
 				<td>{{ session.formation.nom |capitalize }}</td>
 				<td>{{ session.nbPlace }}</td>
+				<td>{{ session.nbPlace - session.chien |length }}</td>
 				<td>{{ session.dateDebut | date('d-m-Y') }}</td>
 				<td>{{ session.dateFin | date('d-m-Y') }}</td>
 				<td>
@@ -27,4 +30,43 @@
 			</tr>
 		</tbody>
 	</table>
+
+	{# programme #}
+	<h2>Programme</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Atelier</th>
+				<th scope="col">Catégorie</th>
+				<th scope="col">Durée de l'Atelier</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+	{# participants #}
+	<h2>Chiens et maîtres inscrits à la Formation</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Chiens</th>
+				<th scope="col">Maîtres</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>{# ça marche pas je crois pas qu'il faut faire comme ça :( #}
+				{# <td>{{ session.chien.nom }}</td> #}
+				{# <td>{{ session.chien.maitre.nom }}</td> #}
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-primary">
+		<a href="#" style="color:white; text-decoration: none;">Inscrire un nouveau chien</a>
+	</button>
 {% endblock %}

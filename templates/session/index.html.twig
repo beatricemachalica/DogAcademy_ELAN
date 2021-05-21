@@ -6,13 +6,15 @@
 {% block container %}
 	<h1 class="text-center">Liste des Sessions</h1>
 
+	<p>Cliquez sur une session pour inscrire des nouveaux participants ou avoir plus d'informations.</p>
+
 	<a href="{{ path('session_add') }}">Ajouter une session</a>
 
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">Formation</th>
-				<th scope="col">Places</th>
+				<th scope="col">Places restantes</th>
 				<th scope="col">Date de début</th>
 				<th scope="col">Date de fin</th>
 				<th scope="col"></th>
@@ -24,7 +26,7 @@
 					<td scope="row">
 						<a href="{{path('session_show', {'id': session.id} )}}">{{ session.formation.nom |capitalize }}</a>
 					</td>
-					<td>{{ session.nbPlace }}</td>
+					<td>{{ session.nbPlace - session.chien |length }}</td>
 					<td>{{ session.dateDebut | date('d-m-Y') }}</td>
 					<td>{{ session.dateFin | date('d-m-Y') }}</td>
 					<td>

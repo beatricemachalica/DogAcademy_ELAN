@@ -19,7 +19,7 @@ class SessionController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $sessions = $this->getDoctrine()
             ->getRepository(Session::class)
-            ->findBy([], ['id' => 'ASC']);
+            ->findBy([], ['dateDebut' => 'ASC']);
 
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions
