@@ -13,8 +13,6 @@
 				<th scope="col">Nom et Prénom des Maitres</th>
 				<th scope="col">Date de naissance</th>
 				<th scope="col">Ville</th>
-				<th scope="col">Mail</th>
-				<th scope="col">Téléphone</th>
 				<th scope="col">Nombre de chien(s) inscrits</th>
 			</tr>
 		</thead>
@@ -23,15 +21,48 @@
 				<td>{{ maitre.nom |capitalize ~ ' '~ maitre.prenom |capitalize }}</td>
 				<td>{{ maitre.dateNaissance | date("d/m/Y") }}</td>
 				<td>{{ maitre.ville |capitalize }}</td>
-				<td>{{ maitre.mail }}</td>
-				<td>{{ maitre.telephone }}</td>
 				<td>{{ maitre.chiens |length }}</td>
 			</tr>
 		</tbody>
 	</table>
 
+	{# détails du maitre #}
+	<table class="table" style="margin-top:45px;">
+		<thead>
+			<tr>
+				<th scope="col">Téléphone</th>
+				<th scope="col">Mail</th>
+				<th scope="col">Envoyer un mail
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				{# tel #}
+				{% if maitre.telephone == null %}
+					<td>aucun numéro enregistré</td>
+				{% else %}
+					<td>{{ maitre.telephone }}</td>
+				{% endif %}
+				{# mail #}
+				{% if maitre.mail == null %}
+					<td>aucun email enregistré</td>
+				{% else %}
+					<td>{{ maitre.mail }}</td>
+				{% endif %}
+				{# send mail #}
+				<td>
+					<a href="#">
+						<i class="fas fa-envelope" style="color:black;"></i>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
 	{# chiens #}
-	<table class="table">
+	<table class="table" style="margin-top:45px;">
 		<thead>
 			<tr>
 				<th scope="col">Chiens inscrits</th>

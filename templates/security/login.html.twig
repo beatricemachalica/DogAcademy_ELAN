@@ -1,6 +1,6 @@
 {% extends 'base2.html.twig' %}
 
-{% block title %}Log in
+{% block title %}Connexion
 {% endblock %}
 
 {% block container %}
@@ -12,11 +12,11 @@
 		{% if app.user %}
 			<div class="mb-3">
 				{{ app.user.username |capitalize }}, vous êtes déjà connecté.
-				<a href="{{ path('app_logout') }}">Logout</a>
+				<a href="{{ path('app_logout') }}">Déconnexion</a>
 			</div>
 		{% endif %}
 
-		<h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+		<h1 class="text-center">Connexion</h1>
 		<label for="inputEmail">Email</label>
 		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
 		<label for="inputPassword">Mot de passe</label>

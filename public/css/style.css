@@ -88,6 +88,10 @@ header {
 form {
   padding: 20px 0 25px 0;
 }
+.loginForm,
+.registerForm {
+  color: white;
+}
 .loginForm input {
   border: none !important;
   background-color: rgb(110, 110, 110) !important;
