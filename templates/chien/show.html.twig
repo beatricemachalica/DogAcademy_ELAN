@@ -35,9 +35,9 @@
 		<tbody>
 			{% for session in chien.sessions %}
 				<tr>
-					<td>{{ session.formation }}</td>
-					<td>{{ session.dateDebut }}</td>
-					<td>{{ session.dateFin }}</td>
+					<td>{{ session.formation.nom }}</td>
+					<td>{{ session.dateDebut | date('d-m-Y') }}</td>
+					<td>{{ session.dateFin | date('d-m-Y') }}</td>
 				</tr>
 			{% endfor %}
 		</tbody>

@@ -24,6 +24,8 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* home */
 .backgroundHomeSize {
   width: 100%;
   height: 100vh;
@@ -40,6 +42,8 @@ body {
   background-position: center;
   position: relative;
 }
+
+/* home Title */
 .displayHomeTitle {
   position: absolute;
   top: 100px;
@@ -52,10 +56,13 @@ body {
 .displayHomeTitle p {
   font-size: 1.5rem;
 }
+
+/* website header */
 header {
   width: 100%;
-  /* background-color: #e4e9ee; */
 }
+
+/* banner */
 .bannerFigure {
   position: relative;
   width: 65%;
@@ -66,6 +73,14 @@ header {
   margin: 20px 0 10px 0;
   filter: drop-shadow(3px 1px 4px rgba(44, 44, 44, 0.7));
 }
+.figcaptionBanner {
+  font-size: 1.3rem;
+  position: absolute;
+  top: 170px;
+  right: 250px;
+}
+
+/* navbars */
 .navbar {
   background-color: #e4e9ee !important;
 }
@@ -73,18 +88,14 @@ header {
   background-color: rgba(34, 34, 34, 0.8) !important;
   color: white;
 }
-.figcaptionBanner {
-  font-size: 1.3rem;
-  position: absolute;
-  top: 170px;
-  right: 250px;
-}
 .logoSpan {
   color: rgba(0, 0, 0, 0.9);
   font-family: "Roboto Slab", serif;
   font-size: 2rem;
   font-weight: bold;
 }
+
+/* forms */
 form {
   padding: 20px 0 25px 0;
 }
@@ -102,6 +113,14 @@ form {
   background-color: rgb(110, 110, 110) !important;
   color: white !important;
 }
+/* table */
+.descriptionInTable {
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* footers */
 footer {
   width: 100%;
   height: 60px;

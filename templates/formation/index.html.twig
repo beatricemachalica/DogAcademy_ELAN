@@ -5,7 +5,9 @@
 
 {% block container %}
 	<h1 class="text-center">Liste des Formations</h1>
-	<a href="{{ path('formation_add') }}">Ajouter une formation</a>
+	<p>Cliquez sur une formation pour avoir plus d'informations.</p>
+
+	{# table formations #}
 	<table class="table">
 		<thead>
 			<tr>
@@ -17,8 +19,14 @@
 		<tbody>
 			{% for formation in formations %}
 				<tr>
-					<td>{{ formation.nom |capitalize }}</td>
-					<td>{{ formation.description }}</td>
+					<td>
+						<a href="{{path('formation_show', {'id': formation.id} )}}">{{ formation.nom |capitalize }}</a>
+					</td>
+					<td>
+						<p class="descriptionInTable">
+							{{ formation.description }}
+						</p>
+					</td>
 					<td>
 						<a href="{{ path('formation_edit', {id: formation.id}) }}">Editer</a>
 					</td>
@@ -29,4 +37,9 @@
 			{% endfor %}
 		</tbody>
 	</table>
+
+	{# button #}
+	<button class="btn btn-primary">
+		<a href="{{ path('formation_add') }}" style="color:white; text-decoration: none;">Ajouter une formation</a>
+	</button>
 {% endblock %}

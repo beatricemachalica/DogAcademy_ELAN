@@ -72,4 +72,13 @@ class FormationController extends AbstractController
 
         return $this->redirectToRoute('formations_index');
     }
+
+    /**
+     * @Route("/{id}", name="formation_show", methods="GET")
+     */
+    public function show(Formation $formation): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('formation/show.html.twig', ['formation' => $formation]);
+    }
 }

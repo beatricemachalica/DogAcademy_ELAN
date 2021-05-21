@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation
+{% endblock %}
+
+{% block container %}
+	<h1>Informations sur la Formation</h1>
+
+	<article>
+		<h2>{{ formation.nom |capitalize }}</h2>
+		<div class="flex">
+			<div class="col-5">
+				<img src="{{ asset('img/' ~ formation.img) }}" alt="photo formation">
+			</div>
+			<div class="col-7">
+				<p class="text-justify">{{ formation.description |capitalize }}</p>
+			</div>
+		</div>
+	</article>
+
+	<h2>Sessions</h2>
+	{# sessions #}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Code #</th>
+				<th scope="col">Places</th>
+				<th scope="col">Places restantes</th>
+				<th scope="col">Date début</th>
+				<th scope="col">Date fin</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				{% for session in formation.sessions %}
+					<td>{{ session.id }}</td>
+					<td>{{ session.nbPlace }}</td>
+					<td>{{ session.nbPlace - session.chien |length }}</td>
+					<td>{{ session.dateDebut | date('d-m-Y') }}</td>
+					<td>{{ session.dateFin | date('d-m-Y') }}</td>
+				{% endfor %}
+			</tr>
+		</tbody>
+	</table>
+
+	{# buttons #}
+	<button class="btn btn-primary">
+		<a href="#" style="color:white; text-decoration: none;">Ajouter une Session</a>
+	</button>
+	<button class="btn btn-primary">
+		<a href="{{ path('formation_edit', {id: formation.id}) }}" style="color:white; text-decoration: none;">Modifier la formation</a>
+	</button>
+{% endblock %}

@@ -61,15 +61,6 @@ class ChienController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="chien_show", methods="GET")
-     */
-    public function show(Chien $chien): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('chien/show.html.twig', ['chien' => $chien]);
-    }
-
-    /**
      * @Route("/delete/{id}", name="chien_delete")
      */
     public function delete(Chien $chien): Response
@@ -80,5 +71,14 @@ class ChienController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('chiens_index');
+    }
+
+    /**
+     * @Route("/{id}", name="chien_show", methods="GET")
+     */
+    public function show(Chien $chien): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('chien/show.html.twig', ['chien' => $chien]);
     }
 }
