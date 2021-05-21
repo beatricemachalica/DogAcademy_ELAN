@@ -20,6 +20,20 @@ body {
   margin: 0;
   padding: 0;
 }
+.backgroundHomeSize {
+  width: 100%;
+  height: 100%;
+}
+.backgroundDog {
+  /* background-image: url("https://cdn.pixabay.com/photo/2015/07/27/19/11/beach-863139_960_720.jpg"); */
+  width: 100%;
+  height: 500px;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
 header {
   width: 100%;
   /* background-color: #e4e9ee; */

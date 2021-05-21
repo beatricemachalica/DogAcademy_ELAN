@@ -1,10 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {# sign in / sign up page #}
 
 {% block title %}DogAcademy
 {% endblock %}
 
-{% block body %}
-	{% block container %}{% endblock %}
+{# container #}
+{% block container %}
+	<div class="backgroundDog"><img src="{{asset('img/home.jpg')}}" alt="background"></div>
+{% endblock %}
+
+
+{# footer #}
+{% block footer %}
+	<footer>
+		Terence Mathieu & Béatrice Machalica | Dog Academy | 2021 Mentions légales
+	</footer>
 {% endblock %}
