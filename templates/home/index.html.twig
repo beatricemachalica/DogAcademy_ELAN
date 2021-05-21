@@ -5,15 +5,16 @@
 {% block title %}DogAcademy
 {% endblock %}
 
-{# container #}
 {% block container %}
-	<div class="backgroundDog"><img src="{{asset('img/home.jpg')}}" alt="background"></div>
+	<div class="displayHomeTitle">
+		<h1 id="homeTitle">Bienvenue sur DogAcademy</h1>
+		<p>Connectez-vous ou inscrivez-vous pour consulter le site.</p>
+	</div>
 {% endblock %}
-
 
 {# footer #}
 {% block footer %}
-	<footer>
+	<footer class="homeFooter">
 		Terence Mathieu & Béatrice Machalica | Dog Academy | 2021 Mentions légales
 	</footer>
 {% endblock %}
