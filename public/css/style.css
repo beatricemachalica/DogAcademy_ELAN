@@ -16,14 +16,53 @@ em {
 .flex {
   display: flex;
 }
+h1,
+h2 {
+  padding: 20px 0 20px 0;
+}
 body {
   margin: 0;
   padding: 0;
 }
+
+/* home */
+.backgroundHomeSize {
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+.backgroundDog {
+  background-image: url("../img/home.jpg");
+  width: 100%;
+  height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+/* home Title */
+.displayHomeTitle {
+  position: absolute;
+  top: 100px;
+  font-family: "Roboto Slab", serif;
+  color: white;
+}
+#homeTitle {
+  font-size: 3rem;
+}
+.displayHomeTitle p {
+  font-size: 1.5rem;
+}
+
+/* website header */
 header {
   width: 100%;
-  /* background-color: #e4e9ee; */
 }
+
+/* banner */
 .bannerFigure {
   position: relative;
   width: 65%;
@@ -34,18 +73,20 @@ header {
   margin: 20px 0 10px 0;
   filter: drop-shadow(3px 1px 4px rgba(44, 44, 44, 0.7));
 }
-.navbar {
-  background-color: #e4e9ee !important;
-}
-h1,
-h2 {
-  margin: 25px 0 25px 0;
-}
 .figcaptionBanner {
   font-size: 1.3rem;
   position: absolute;
   top: 170px;
   right: 250px;
+}
+
+/* navbars */
+.navbar {
+  background-color: #e4e9ee !important;
+}
+.homeNavBar {
+  background-color: rgba(34, 34, 34, 0.8) !important;
+  color: white;
 }
 .logoSpan {
   color: rgba(0, 0, 0, 0.9);
@@ -53,17 +94,45 @@ h2 {
   font-size: 2rem;
   font-weight: bold;
 }
+
+/* forms */
 form {
-  margin: 30px 0 30px 0;
+  padding: 20px 0 25px 0;
 }
+.loginForm,
+.registerForm {
+  color: white;
+}
+.loginForm input {
+  border: none !important;
+  background-color: rgb(110, 110, 110) !important;
+  color: white !important;
+}
+.registerForm input {
+  border: none !important;
+  background-color: rgb(110, 110, 110) !important;
+  color: white !important;
+}
+/* table */
+.descriptionInTable {
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* footers */
 footer {
   width: 100%;
   height: 60px;
   margin-top: 55px;
-  background-color: rgb(59, 59, 59);
+  background-color: rgb(34, 34, 34, 0.9);
   color: white;
   font-family: "Roboto Slab", serif;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.homeFooter {
+  position: absolute;
+  bottom: 0;
 }

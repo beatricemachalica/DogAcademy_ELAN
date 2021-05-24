@@ -6,14 +6,14 @@
 {% block container %}
 	<h1>Information du maître</h1>
 
+	{# détails du maitre #}
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">Nom et Prénom des Maitres</th>
 				<th scope="col">Date de naissance</th>
 				<th scope="col">Ville</th>
-				<th scope="col">Mail</th>
-				<th scope="col">Téléphone</th>
+				<th scope="col">Nombre de chien(s) inscrits</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,9 +21,72 @@
 				<td>{{ maitre.nom |capitalize ~ ' '~ maitre.prenom |capitalize }}</td>
 				<td>{{ maitre.dateNaissance | date("d/m/Y") }}</td>
 				<td>{{ maitre.ville |capitalize }}</td>
-				<td>{{ maitre.mail }}</td>
-				<td>{{ maitre.telephone }}</td>
+				<td>{{ maitre.chiens |length }}</td>
 			</tr>
 		</tbody>
 	</table>
+
+	{# détails du maitre #}
+	<table class="table" style="margin-top:45px;">
+		<thead>
+			<tr>
+				<th scope="col">Téléphone</th>
+				<th scope="col">Mail</th>
+				<th scope="col">Envoyer un mail
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				{# tel #}
+				{% if maitre.telephone == null %}
+					<td>aucun numéro enregistré</td>
+				{% else %}
+					<td>{{ maitre.telephone }}</td>
+				{% endif %}
+				{# mail #}
+				{% if maitre.mail == null %}
+					<td>aucun email enregistré</td>
+				{% else %}
+					<td>{{ maitre.mail }}</td>
+				{% endif %}
+				{# send mail #}
+				<td>
+					<a href="#">
+						<i class="fas fa-envelope" style="color:black;"></i>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	{# chiens #}
+	<table class="table" style="margin-top:45px;">
+		<thead>
+			<tr>
+				<th scope="col">Chiens inscrits</th>
+				<th scope="col">Race</th>
+				<th scope="col">Date de Naissance</th>
+				<th scope="col">Age</th>
+				<th scope="col">Formation</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for chien in maitre.chiens %}
+				<tr>
+					<td>{{ chien.nom }}</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>
+						<a href="{{ path('chien_show', {'id': chien.id}) }}">consulter</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<button class="btn btn-primary">
+		<a href="{{ path('chien_add') }}" style="color:white; text-decoration: none;">Ajouter un chien</a>
+	</button>
 {% endblock %}
