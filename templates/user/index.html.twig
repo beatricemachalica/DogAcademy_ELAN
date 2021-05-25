@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte
+{% endblock %}
+
+{% block container %}
+
+	{# <h2>Bonjour {{ actual }}</h2> #}
+	<h2>Bienvenue sur votre compte,
+		{{app.user.prenom |capitalize }}
+	</h2>
+
+	{# informations #}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Nom</th>
+				<th scope="col">Prénom</th>
+				<th scope="col">Adresse mail</th>
+				<th scope="col">Rôle</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ app.user.nom |capitalize}}</td>
+				<td>{{ app.user.prenom |capitalize}}</td>
+				<td>{{ app.user.email}}</td>
+				<td>{{ app.user.roles[0]}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	{# sessions #}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Nom de la Formation</th>
+				<th scope="col">Places restantes</th>
+				<th scope="col">Date de début</th>
+				<th scope="col">Date de fin</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>{# <td>{{ session.formation.nom |capitalize }}</td> #}
+				{# <td>{{ session.nbPlace - session.chien |length }}</td> #}
+				{# <td>{{ session.dateDebut | date('d-m-Y') }}</td> #}
+				{# <td>{{ session.dateFin | date('d-m-Y') }}</td> #}
+			</tr>
+		</tbody>
+	</table>
+
+	{# buttons #}
+	<button class="btn btn-primary">
+		<a href="#" style="color:white; text-decoration: none;">Ajouter des sessions</a>
+	</button>
+{% endblock %}

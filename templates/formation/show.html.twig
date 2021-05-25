@@ -28,6 +28,7 @@
 				<th scope="col">Places restantes</th>
 				<th scope="col">Date début</th>
 				<th scope="col">Date fin</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,6 +39,11 @@
 					<td>{{ session.nbPlace - session.chien |length }}</td>
 					<td>{{ session.dateDebut | date('d-m-Y') }}</td>
 					<td>{{ session.dateFin | date('d-m-Y') }}</td>
+					<td scope="row">
+						<a href="{{path('session_show', {'id': session.id} )}}">Voir
+							<i class="fas fa-arrow-right"></i>
+						</a>
+					</td>
 				{% endfor %}
 			</tr>
 		</tbody>
