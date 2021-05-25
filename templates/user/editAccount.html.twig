@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Compte
+{% endblock %}
+
+{% block container %}
+	<h1>Modifier ses informations</h1>
+
+	{# début du contenu du formulaire #}
+	{{form_start(formEditUser)}}
+
+	{{form_row(formEditUser.nom)}}
+	{{form_row(formEditUser.prenom)}}
+	{{form_row(formEditUser.email)}}
+
+	<button type="submit" class="btn btn-outline-primary">
+		Modifier
+	</button>
+
+	{# fin du formulaire #}
+	{{form_end(formEditUser)}}
+
+{% endblock %}

@@ -30,6 +30,11 @@
 		</tbody>
 	</table>
 
+	{# button(s) #}
+	<button class="btn btn-primary" style="margin:20px 0 20px 0;">
+		<a href="{{path('user_edit', {id: app.user.id})}}" style="color:white; text-decoration: none;">Modifier mes informations</a>
+	</button>
+
 	{# sessions #}
 	<table class="table">
 		<thead>
@@ -49,8 +54,8 @@
 		</tbody>
 	</table>
 
-	{# buttons #}
-	<button class="btn btn-primary">
+	{# button(s) #}
+	<button class="btn btn-primary" style="margin:20px 0 20px 0;">
 		<a href="#" style="color:white; text-decoration: none;">Ajouter des sessions</a>
 	</button>
 {% endblock %}
