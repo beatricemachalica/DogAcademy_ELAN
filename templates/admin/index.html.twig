@@ -7,7 +7,6 @@
 
 		<h2>Bonjour {{ actual }}</h2>
 
-	<a href="{{ path('user_add') }}">Ajouter un utilisateur</a>
 	<table class="table">
 		<thead>
 			<tr>
@@ -15,6 +14,8 @@
 				<th scope="col">Prénom</th>
 				<th scope="col">Adresse mail</th>
 				<th scope="col">Rôle</th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,6 +25,12 @@
 					<td>{{ user.prenom}}</td>
 					<td>{{ user.username}}</td>
 					<td>{{ user.roles[0]}}</td>
+					<td>
+						<a href="{{ path('user_edit', {id: user.id}) }}">Editer</a>
+					</td>
+					<td>
+						<a href="{{ path('user_delete', {id: user.id}) }}">Supprimer</a>
+					</td>
 				</tr>
 			{% endfor %}
 

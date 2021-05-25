@@ -58,26 +58,39 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-
-            // par défaut on attribue le rôle user
-            $user->setRoles(["ROLE_USER"]);
+            // $user->setPassword(
+            //     $passwordEncoder->encodePassword(
+            //         $user,
+            //         $form->get('plainPassword')->getData()
+            //     )
+            // );
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('users_index');
+            return $this->redirectToRoute('admin');
         }
 
         return $this->render('user/new.html.twig', [
             'formAddUser' => $form->createView(),
             'editMode' => $user->getId() !== null
         ]);
+    }
+
+    /**
+     * Require ROLE_ADMIN for only this controller method.
+     * 
+     * @Route("/delete/{id}", name="user_delete")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function delete(User $user): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin');
     }
 }

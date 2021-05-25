@@ -14,6 +14,9 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('accueil');
+        }
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);

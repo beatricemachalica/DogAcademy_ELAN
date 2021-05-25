@@ -19,9 +19,10 @@
 	{{form_row(formAddUser.nom)}}
 	{{form_row(formAddUser.prenom)}}
 	{{form_row(formAddUser.email)}}
-	{{ form_row(formAddUser.plainPassword, {
+	{{form_row(formAddUser.roles)}}
+	{# {{ form_row(formAddUser.plainPassword, {
     label: 'Mot de passe'
-  }) }}
+  }) }} #}
 
 		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
 			Modifier
