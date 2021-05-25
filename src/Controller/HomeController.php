@@ -32,4 +32,13 @@ class HomeController extends AbstractController
             'user' => $this->getUser()->getUsername(),
         ]);
     }
+    /**
+     * @Route("/conditions", name="conditions")
+     */
+    public function conditions(): Response
+    {
+        return $this->render('home/conditions.html.twig', [
+            'data' => 'data',
+        ]);
+    }
 }
