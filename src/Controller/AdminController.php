@@ -23,7 +23,7 @@ class AdminController extends AbstractController
     public function adminPanel(): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('home/index.html.twig', [
+        return $this->render('admin/index.html.twig', [
             // 'user' => '$this->getUser()->getUsername()',
         ]);
     }
