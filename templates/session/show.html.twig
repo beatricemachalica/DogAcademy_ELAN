@@ -35,16 +35,18 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<th scope="col">Code #</th>
 				<th scope="col">Atelier</th>
-				<th scope="col">Catégorie</th>
-				<th scope="col">Durée de l'Atelier</th>
+				<th scope="col">Durée</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
+				{% for programme in session.programmers %}
+					<td>{{programme.id}}</td>
+					<td>{{programme.atelier.libelle}}</td>
+					<td>{{programme.duree}}</td>
+				{% endfor %}
 			</tr>
 		</tbody>
 	</table>
