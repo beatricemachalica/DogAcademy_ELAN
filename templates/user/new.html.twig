@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Utilisateur
+{% endblock %}
+
+{% block container %}
+	{% if editMode %}
+		<h1>Modifier les informations d'un Utilisateur</h1>
+	{% else %}
+		<h1>Ajout d'un nouvelle utilisateur</h1>
+	{% endif %}
+
+	{# simplement afficher le formulaire #}
+	{# {{ form(formAddUser) }} #}
+
+	{# début du contenu du formulaire #}
+	{{form_start(formAddUser)}}
+
+	{{form_row(formAddUser.nom)}}
+	{{form_row(formAddUser.prenom)}}
+	{{form_row(formAddUser.email)}}
+	{{ form_row(formAddUser.plainPassword, {
+    label: 'Mot de passe'
+  }) }}
+
+		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
+			Modifier
+		{% else %}
+			Ajouter
+		{% endif %}
+	</button>
+
+	{# fin du formulaire #}
+	{{form_end(formAddUser)}}
+
+{% endblock %}

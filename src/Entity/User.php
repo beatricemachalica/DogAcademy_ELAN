@@ -46,6 +46,12 @@ class User implements UserInterface
      */
     private $prenom;
 
+    // Rajouté manuellement
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;

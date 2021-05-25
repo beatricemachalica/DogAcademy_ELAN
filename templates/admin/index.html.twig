@@ -3,10 +3,28 @@
 {% block title %}Hello AdminController!
 {% endblock %}
 
-{% block body %}
 	{% block container %}
-	
-	<h1>Bonjour monsieur l'admin</h1>
-	
+
+		<h2>Bonjour {{ actual }}</h2>
+
+	<a href="{{ path('user_add') }}">Ajouter un utilisateur</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Nom</th>
+				<th scope="col">Prénom</th>
+				<th scope="col">Adresse mail</th>
+				<th scope="col">Rôle</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.nom}}</td>
+					<td>{{ user.prenom}}</td>
+					<td>{{ user.username}}</td>
+					<td>{{ user.roles[0]}}</td>
+				</tr>
+			{% endfor %}
+
 	{% endblock %}
-{% endblock %}
