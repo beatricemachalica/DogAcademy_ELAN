@@ -72,4 +72,9 @@ class Programmer
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getAtelier() . ' : ' . $this->getDuree . ' jour(s),';
+    }
 }

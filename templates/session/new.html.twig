@@ -14,12 +14,22 @@
 	{# {{ form(formAddSession) }} #}
 
 	{# début du contenu du formulaire #}
-	{{form_start(formAddSession)}}
 
 	{{form_row(formAddSession.formation)}}
 	{{form_row(formAddSession.nbPlace)}}
 	{{form_row(formAddSession.dateDebut)}}
 	{{form_row(formAddSession.dateFin)}}
+	<ul id="chiens" data-prototype="{{ form_row(formAddSession.chien.vars.prototype)|e }}">
+
+		{% for chien in formAddSession.chien %}
+		<li class="chien">
+		{{ form_row(chien) }}
+		</li>
+		{% endfor %}
+
+	</ul>
+
+
 
 
 	{# submit button #}
@@ -33,4 +43,8 @@
 	{# fin du formulaire #}
 	{{form_end(formAddSession)}}
 
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="/js/collectionHandler.js"></script>
 {% endblock %}

@@ -27,7 +27,7 @@ class SessionController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="session_add")
+     * @Route("/news", name="session_add")
      * @Route("/edit/{id}", name="session_edit")
      */
     public function new(Request $request, Session $session = null): Response
@@ -53,6 +53,7 @@ class SessionController extends AbstractController
 
         return $this->render('session/new.html.twig', [
             'formAddSession' => $form->createView(),
+            // 'session' => $session,
             'editMode' => $session->getId() !== null
         ]);
     }
@@ -79,5 +80,13 @@ class SessionController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('sessions_index');
+    }
+
+    /**
+     * @Route("/addDuree/{id}", name="addAtelierToSession")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function addAtelierToSession()
+    {
     }
 }
