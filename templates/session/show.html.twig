@@ -37,7 +37,7 @@
 			<tr>
 				<th scope="col">Code #</th>
 				<th scope="col">Atelier</th>
-				<th scope="col">Durée</th>
+				<th scope="col">Nombre de jours</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -51,7 +51,7 @@
 		</tbody>
 	</table>
 	<button class="btn btn-primary">
-		<a href="#" style="color:white; text-decoration: none;">Ajouter un Atelier</a>
+		<a href="{{path('addAtelierToSession', {id: session.id})}}" style="color:white; text-decoration: none;">Ajouter un Atelier</a>
 	</button>
 
 	{# participants #}
@@ -64,10 +64,10 @@
 		</thead>
 		<tbody>
 			{% for chien in session.chien %}
-			<tr>
-				<td>{{ chien.nom }}</td>
-				<td>{{ chien.maitre }}</td>
-			</tr>
+				<tr>
+					<td>{{ chien.nom }}</td>
+					<td>{{ chien.maitre }}</td>
+				</tr>
 			{% endfor %}
 		</tbody>
 	</table>

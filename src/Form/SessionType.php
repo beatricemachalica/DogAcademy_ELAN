@@ -33,10 +33,11 @@ class SessionType extends AbstractType
       ->add('chien', CollectionType::class, [
         'entry_type' => EntityType::class,
         'entry_options' => [
-          'label' => "Choisir chien :",
+          'label' => "Choisir un chien :",
           'class' => Chien::class,
         ],
         'by_reference' => false,
+        'label' => false,
         'required' => false,
         'allow_add' => true,
         'allow_delete' => true,

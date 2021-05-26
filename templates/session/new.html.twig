@@ -16,7 +16,7 @@
 	{{form_row(formAddSession.formation)}}
 	{{form_row(formAddSession.nbPlace)}}
 	{{form_row(formAddSession.dateDebut)}}
-	{{form_row(formAddSession.dateFin)}} 
+	{{form_row(formAddSession.dateFin)}}
 	<ul id="chiens" data-prototype="{{ form_row(formAddSession.chien.vars.prototype)|e }}">
 
 		{% for chien in formAddSession.chien %}
@@ -26,17 +26,19 @@
 		{% endfor %}
 
 	</ul>
+
 	{# tkt je fais des tests qui marchent pas #}
-	{# <ul id="ateliers" data-prototype="{{ form_row(formAddSession.programmers.vars.prototype)|e }}">
+	{# <ul id="ateliers" data-prototype="{{ form_row(formAddAteliers.programmers.vars.prototype)|e }}">
+					
+							{% for atelier in formAddAteliers.programmers.atelier %}
+								<li class="atelier">
+									{{ form_row(atelier) }}
+								</li>
+							{% endfor %}
+					
+						</ul> #}
 
-		{% for atelier in formAddSession.programmers.atelier %}
-			<li class="atelier">
-				{{ form_row(atelier) }}
-			</li>
-		{% endfor %} #}
-
-	</ul>
-	{# Prévenir l'affichage du champs en prétendant qu'il est déjà remplis #}
+	{# Prévenir l'affichage du champs en prétendant qu'il est déjà rempli #}
 	{# {% do formAddSession.chien.setRendered() %} #}
 	{# submit button #}
 		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
@@ -47,12 +49,11 @@
 	</button>
 
 	{# fin du formulaire #}
-	{{form_end(formAddSession, {'render_rest': false})}}
-
+	{# {'render_rest': false} pour empecher l'affichage d'un champs fantome à cause du JS #}
+	{{form_end(formAddSession)}}
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
 	<script src="/js/collectionHandler.js"></script>
-	<script src="/js/collectionHandlerDuree.js"></script>
+	{# <script src="/js/collectionHandlerDuree.js"></script> #}
 {% endblock %}
-{# test git merge conflit #}

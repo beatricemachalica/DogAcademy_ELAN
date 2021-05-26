@@ -11,37 +11,37 @@
 	{% endif %}
 
 	{# simplement afficher le formulaire #}
-	{# {{ form(formAddSession) }} #}
+	{{ form(formAddAteliers) }}
 
-	{# début du contenu du formulaire #}
-	{{form_start(formAddSession)}}
+		{# début du contenu du formulaire #}
+		{{form_start(formAddSession)}}
 
-	{{form_row(formAddSession.formation)}}
-	{{form_row(formAddSession.nbPlace)}}
-	{{form_row(formAddSession.dateDebut)}}
-	{{form_row(formAddSession.dateFin)}}
-	<ul id="chiens" data-prototype="{{ form_row(formAddSession.chien.vars.prototype)|e }}">
+		{{form_row(formAddSession.formation)}}
+		{{form_row(formAddSession.nbPlace)}}
+		{{form_row(formAddSession.dateDebut)}}
+		{{form_row(formAddSession.dateFin)}}
+		<ul id="chiens" data-prototype="{{ form_row(formAddSession.chien.vars.prototype)|e }}">
+			{% for chien in formAddSession.chien %}
+				<li class="chien">
+					{{ form_row(chien) }}
+				</li>
+			{% endfor %}
 
-		{% for chien in formAddSession.chien %}
-		<li class="chien">
-		{{ form_row(chien) }}
-		</li>
-		{% endfor %}
+		</ul>
+		{# submit button #}
+		<button type="submit" class="btn btn-outline-primary">
+			{% if editMode %}
+				Modifier
+			{% else %}
+				Ajouter
+			{% endif %}
+		</button>
 
-	</ul>
-	{# submit button #}
-		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
-			Modifier
-		{% else %}
-			Ajouter
-		{% endif %}
-	</button>
+		{# fin du formulaire #}
+		{{form_end(formAddSession)}}
 
-	{# fin du formulaire #}
-	{{form_end(formAddSession)}}
-
-{% endblock %}
-{% block javascripts %}
-	{{ parent() }}
-	<script src="/js/collectionHandler.js"></script>
-{% endblock %}
+	{% endblock %}
+	{% block javascripts %}
+		{{ parent() }}
+		<script src="/js/collectionHandlerDuree.js"></script>
+	{% endblock %}

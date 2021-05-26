@@ -26,14 +26,15 @@ class ChienType extends AbstractType
                 'class' => Maitre::class,
                 'required'   => true,
             ]);
+        // si on veut directement ajouter une session de formation lorsqu'on ajoute un nouveau chien
         // error :
         // Entity of type "Doctrine\Common\Collections\ArrayCollection" 
         // passed to the choice field must be managed. 
         // Maybe you forget to persist it in the entity manager?
 
         // ->add('sessions', EntityType::class, [
-        //     'label' => 'Session de Formation',
         //     'class' => Session::class,
+        //     'label' => 'Session de Formation',
         //     'required'   => true,
         //     'choice_label' => 'formation',
         // ]);

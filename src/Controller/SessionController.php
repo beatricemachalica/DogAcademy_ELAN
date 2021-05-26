@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Programmer;
 use App\Entity\Session;
+use App\Form\AteliersType;
 use App\Form\SessionType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -60,17 +62,6 @@ class SessionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="session_show")
-     */
-    public function show(Session $session): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('session/show.html.twig', [
-            'session' => $session
-        ]);
-    }
-
-    /**
      * @Route("/delete/{id}", name="session_delete")
      */
     public function delete(Session $session): Response
@@ -83,11 +74,46 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('sessions_index');
     }
 
+    // pour tester j'ai enlever le : @IsGranted("ROLE_ADMIN")
     /**
      * @Route("/addDuree/{id}", name="addAtelierToSession")
-     * @IsGranted("ROLE_ADMIN")
      */
-    public function addAtelierToSession()
+    public function addAtelierToSession(Request $request, Programmer $programmer): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if (!$programmer) {
+            $programmer = new Programmer();
+        }
+        $form2 = $this->createForm(AteliersType::class, $programmer);
+
+        $form2->handleRequest($request);
+        if ($form2->isSubmitted() && $form2->isValid()) {
+
+            $programmer = $form2->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($programmer);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('sessions_index');
+        }
+
+        return $this->render('programmer/addDuree.html.twig', [
+            'formAddAteliers' => $form2->createView(),
+            // 'session' => $session,
+            // 'editMode' => $programmer->getId() !== null
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="session_show")
+     */
+    public function show(Session $session): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('session/show.html.twig', [
+            'session' => $session
+        ]);
     }
 }

@@ -15,13 +15,16 @@ class ProgrammerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('duree', IntegerType::class, [])
+            ->add('duree', IntegerType::class, [
+                'required'   => true,
+                'label' => false,
+            ])
             ->add('atelier', EntityType::class, [
                 'class' => Atelier::class,
                 'label' => false,
                 'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('m')
-                        ->orderBy('m.libelle', 'ASC');
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.libelle', 'ASC');
                 }
             ]);
     }
