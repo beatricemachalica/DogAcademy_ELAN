@@ -10,9 +10,6 @@
 		<h1>Ajout d'une Session</h1>
 	{% endif %}
 
-	{# simplement afficher le formulaire #}
-	{# {{ form(formAddSession) }} #}
-
 	{# début du contenu du formulaire #}
 	{{form_start(formAddSession)}}
 
@@ -20,16 +17,19 @@
 	{{form_row(formAddSession.nbPlace)}}
 	{{form_row(formAddSession.dateDebut)}}
 	{{form_row(formAddSession.dateFin)}}
-		<ul id="chiens" data-prototype="{{ form_row(formAddSession.chien.vars.prototype)|e }}"> {% for chien in formAddSession.chien %}
+	<ul id="chiens" data-prototype="{{ form_row(formAddSession.chien.vars.prototype)|e }}">
+
+		{% for chien in formAddSession.chien %}
 			<li class="chien">
 				{{ form_row(chien) }}
 			</li>
 		{% endfor %}
 
 	</ul>
+	{# Prévenir l'affichage du champs en prétendant qu'il est déjà remplis #}
+	{# {% do formAddSession.chien.setRendered() %} #}
 	{# submit button #}
-	<button type="submit" class="btn btn-outline-primary">
-		{% if editMode %}
+		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
 			Modifier
 		{% else %}
 			Ajouter
@@ -37,10 +37,11 @@
 	</button>
 
 	{# fin du formulaire #}
-	{{form_end(formAddSession)}}
+	{{form_end(formAddSession, {'render_rest': false})}}
 
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
 	<script src="/js/collectionHandler.js"></script>
 {% endblock %}
+{# test git merge conflit #}
