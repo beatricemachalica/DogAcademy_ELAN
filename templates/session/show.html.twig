@@ -63,13 +63,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>{# ça marche pas je crois pas qu'il faut faire comme ça :( #}
-				{# <td>{{ session.chien.nom }}</td> #}
-				{# <td>{{ session.chien.maitre.nom }}</td> #}
+			{% for chien in session.chien %}
+			<tr>
+				<td>{{ chien.nom }}</td>
+				<td>{{ chien.maitre }}</td>
 			</tr>
+			{% endfor %}
 		</tbody>
 	</table>
 	<button class="btn btn-primary">
-		<a href="#" style="color:white; text-decoration: none;">Ajouter un chien</a>
+		<a href="{{ path('session_edit', {id: session.id}) }}" style="color:white; text-decoration: none;">Modifier la session</a>
 	</button>
 {% endblock %}

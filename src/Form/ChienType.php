@@ -25,7 +25,6 @@ class ChienType extends AbstractType
                 'label' => 'Maître du chien',
                 'class' => Maitre::class,
                 'required'   => true,
-                'choice_label' => 'nom',
             ]);
         // error :
         // Entity of type "Doctrine\Common\Collections\ArrayCollection" 

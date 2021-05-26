@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session
+{% endblock %}
+
+{% block container %}
+	{% if editMode %}
+		<h1>Modifier la Session</h1>
+	{% else %}
+		<h1>Ajout d'une Session</h1>
+	{% endif %}
+
+	{# simplement afficher le formulaire #}
+	{# {{ form(formAddSession) }} #}
+
+	{# début du contenu du formulaire #}
+	{{form_start(formAddSession)}}
+
+	{{form_row(formAddSession.formation)}}
+	{{form_row(formAddSession.nbPlace)}}
+	{{form_row(formAddSession.dateDebut)}}
+	{{form_row(formAddSession.dateFin)}}
+	<ul id="chiens" data-prototype="{{ form_row(formAddSession.chien.vars.prototype)|e }}">
+
+		{% for chien in formAddSession.chien %}
+		<li class="chien">
+		{{ form_row(chien) }}
+		</li>
+		{% endfor %}
+
+	</ul>
+	{# submit button #}
+		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
+			Modifier
+		{% else %}
+			Ajouter
+		{% endif %}
+	</button>
+
+	{# fin du formulaire #}
+	{{form_end(formAddSession)}}
+
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="/js/collectionHandler.js"></script>
+{% endblock %}

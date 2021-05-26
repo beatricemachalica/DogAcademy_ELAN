@@ -14,6 +14,7 @@
 	{# {{ form(formAddSession) }} #}
 
 	{# début du contenu du formulaire #}
+	{{form_start(formAddSession)}}
 
 	{{form_row(formAddSession.formation)}}
 	{{form_row(formAddSession.nbPlace)}}
@@ -28,10 +29,6 @@
 		{% endfor %}
 
 	</ul>
-
-
-
-
 	{# submit button #}
 		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
 			Modifier
