@@ -26,6 +26,16 @@
 		{% endfor %}
 
 	</ul>
+	{# tkt je fais des tests qui marchent pas #}
+	{# <ul id="ateliers" data-prototype="{{ form_row(formAddSession.programmers.vars.prototype)|e }}">
+
+		{% for atelier in formAddSession.programmers.atelier %}
+			<li class="atelier">
+				{{ form_row(atelier) }}
+			</li>
+		{% endfor %} #}
+
+	</ul>
 	{# Prévenir l'affichage du champs en prétendant qu'il est déjà remplis #}
 	{# {% do formAddSession.chien.setRendered() %} #}
 	{# submit button #}
@@ -43,5 +53,6 @@
 {% block javascripts %}
 	{{ parent() }}
 	<script src="/js/collectionHandler.js"></script>
+	<script src="/js/collectionHandlerDuree.js"></script>
 {% endblock %}
 {# test git merge conflit #}
