@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Session;
 use App\Form\SessionType;
-use App\Entity\Programmer;
 use App\Form\AteliersType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,11 +19,18 @@ class SessionController extends AbstractController
      */
     public function index(): Response
     {
+        // la function index va afficher la liste des sessions
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // denyAccessUnlessGranted : permet de refuser un accès à l'intérieur d'un controleur
+        // ici si l'utilisateur n'est pas connecté = IS_AUTHENTICATED_FULLY
+
         $sessions = $this->getDoctrine()
             ->getRepository(Session::class)
             ->findBy([], ['dateDebut' => 'ASC']);
+        // on appelle la doctrine (qui s'occupe de la BDD et l'ORM), puis le repositoy de Session
+        // les sessions seront affichées dans l'ordre : des plus récentes au plus anciennes
 
+        // retourne une vue avec les données des sessions pour pouvoir les afficher
         return $this->render('session/index.html.twig', [
             'sessions' => $sessions
         ]);
@@ -75,9 +81,9 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('sessions_index');
     }
 
-    // pour tester j'ai enlever le : @IsGranted("ROLE_ADMIN")
     /**
      * @Route("/addDuree/{id}", name="addAtelierToSession")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function addAtelierToSession(Request $request, Session $session, EntityManagerInterface $entityManager): Response
     {
@@ -90,7 +96,7 @@ class SessionController extends AbstractController
 
             // not needed :
             // $session = $form2->getData();
-            // in paramconvert :
+            // in paramconverter :
             // $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($session);
             $entityManager->flush();

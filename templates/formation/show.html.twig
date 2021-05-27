@@ -40,7 +40,7 @@
 					<td>{{ session.dateDebut | date('d-m-Y') }}</td>
 					<td>{{ session.dateFin | date('d-m-Y') }}</td>
 					<td scope="row">
-						<a href="{{path('session_show', {'id': session.id} )}}">Voir
+						<a href="{{path('session_show', {'id': session.id} )}}">Voir les détails
 							<i class="fas fa-arrow-right"></i>
 						</a>
 					</td>
@@ -51,7 +51,7 @@
 
 	{# buttons #}
 	<button class="btn btn-primary">
-		<a href="#" style="color:white; text-decoration: none;">Ajouter une Session</a>
+		<a href="{{ path('session_add') }}" style="color:white; text-decoration: none;">Ajouter une Session</a>
 	</button>
 	<button class="btn btn-primary">
 		<a href="{{ path('formation_edit', {id: formation.id}) }}" style="color:white; text-decoration: none;">Modifier la formation</a>
