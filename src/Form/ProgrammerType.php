@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Atelier;
+use App\Entity\Programmer;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,7 +33,7 @@ class ProgrammerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'data_class' => Programmer::class,
         ]);
     }
 }

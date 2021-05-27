@@ -19,14 +19,11 @@ class AteliersType extends AbstractType
                 'label' => false,
                 'entry_type' => ProgrammerType::class,
                 'entry_options' => [
-                    'label' => "Module et durée : "
+                    'label' => "Durée et Atelier : "
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-            ])
-            ->add('envoyer', SubmitType::class, [
-                'attr' => ['class' => 'uk-button'],
             ]);
     }
 

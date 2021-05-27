@@ -4,44 +4,31 @@
 {% endblock %}
 
 {% block container %}
-	{% if editMode %}
-		<h1>Modifier la Session</h1>
-	{% else %}
-		<h1>Ajout d'une Session</h1>
-	{% endif %}
+	<h1>Ajouter un atelier à la Session</h1>
 
 	{# simplement afficher le formulaire #}
-	{{ form(formAddAteliers) }}
+	{# {{ form(formAddAteliers) }} #}
 
-		{# début du contenu du formulaire #}
-		{{form_start(formAddSession)}}
+	{# début du contenu du formulaire #}
+	{{form_start(form)}}
 
-		{{form_row(formAddSession.formation)}}
-		{{form_row(formAddSession.nbPlace)}}
-		{{form_row(formAddSession.dateDebut)}}
-		{{form_row(formAddSession.dateFin)}}
-		<ul id="chiens" data-prototype="{{ form_row(formAddSession.chien.vars.prototype)|e }}">
-			{% for chien in formAddSession.chien %}
-				<li class="chien">
-					{{ form_row(chien) }}
-				</li>
-			{% endfor %}
+		<ul id="gestionDurees" data-prototype="{{ form_row(form.programmers.vars.prototype)|e }}"> {% for atelier in form.programmers %}
+			<li class="gestionDuree">
+				{{ form_row(atelier) }}
+			</li>
+		{% endfor %}
 
-		</ul>
-		{# submit button #}
-		<button type="submit" class="btn btn-outline-primary">
-			{% if editMode %}
-				Modifier
-			{% else %}
-				Ajouter
-			{% endif %}
-		</button>
+	</ul>
+	{# submit button #}
+	<button type="submit" class="btn btn-outline-primary">
+		Envoyer
+	</button>
 
-		{# fin du formulaire #}
-		{{form_end(formAddSession)}}
+	{# fin du formulaire #}
+	{{form_end(form)}}
 
-	{% endblock %}
-	{% block javascripts %}
-		{{ parent() }}
-		<script src="/js/collectionHandlerDuree.js"></script>
-	{% endblock %}
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="/js/collectionHandlerDuree.js"></script>
+{% endblock %}

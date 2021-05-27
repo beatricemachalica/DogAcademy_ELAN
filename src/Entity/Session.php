@@ -47,7 +47,7 @@ class Session
     private $chien;
 
     /**
-     * @ORM\OneToMany(targetEntity=Programmer::class, mappedBy="session")
+     * @ORM\OneToMany(targetEntity=Programmer::class, mappedBy="session", cascade={"persist"})
      */
     private $programmers;
 

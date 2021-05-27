@@ -49,18 +49,19 @@ class SessionType extends AbstractType
       ->add('dateFin', DateType::class, [
         'label' => 'Date de fin',
         'widget' => 'single_text',
-      ])
-      ->add('programmers', CollectionType::class, [
-        'label' => false,
-        'entry_type' => AteliersType::class,
-        'entry_options' => [
-          'label' => "Module et durée : "
-        ],
-        'allow_add' => true,
-        'allow_delete' => true,
-        'by_reference' => false,
       ]);
-    // not needed anymore
+
+    // not needed anymore :
+    // ->add('programmers', CollectionType::class, [
+    //   'label' => false,
+    //   'entry_type' => AteliersType::class,
+    //   'entry_options' => [
+    //     'label' => "Module et durée : "
+    //   ],
+    //   'allow_add' => true,
+    //   'allow_delete' => true,
+    //   'by_reference' => false,
+    // ]);
     // ->add('envoyer', SubmitType::class, [
     //   'attr' => ['class' => 'btn btn-outline-primary'],
     // ]);

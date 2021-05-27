@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Programmer;
 use App\Entity\Session;
-use App\Form\AteliersType;
 use App\Form\SessionType;
+use App\Entity\Programmer;
+use App\Form\AteliersType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -78,31 +79,29 @@ class SessionController extends AbstractController
     /**
      * @Route("/addDuree/{id}", name="addAtelierToSession")
      */
-    public function addAtelierToSession(Request $request, Programmer $programmer): Response
+    public function addAtelierToSession(Request $request, Session $session, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if (!$programmer) {
-            $programmer = new Programmer();
-        }
-        $form2 = $this->createForm(AteliersType::class, $programmer);
+        $form2 = $this->createForm('App\Form\AteliersType', $session);
 
         $form2->handleRequest($request);
         if ($form2->isSubmitted() && $form2->isValid()) {
 
-            $programmer = $form2->getData();
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($programmer);
+            // not needed :
+            // $session = $form2->getData();
+            // in paramconvert :
+            // $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($session);
             $entityManager->flush();
 
             return $this->redirectToRoute('sessions_index');
         }
 
         return $this->render('programmer/addDuree.html.twig', [
-            'formAddAteliers' => $form2->createView(),
-            // 'session' => $session,
-            // 'editMode' => $programmer->getId() !== null
+            'form' => $form2->createView(),
+            'session' => $session,
+            // 'editMode' => $session->getId() !== null
         ]);
     }
 

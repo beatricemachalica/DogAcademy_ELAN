@@ -37,11 +37,11 @@ function addCollectionForm($collection, $newLinkLi) {
 //rendu de la collection au chargement de la page
 $(document).ready(function () {
   //on pointe la liste complete (le conteneur de la collection)
-  var $collection = $("ul#ateliers");
+  var $collection = $("ul#gestionDurees");
   //on y ajoute le bouton ajouter (à la fin du contenu)
   $collection.append($newLinkLi);
   //pour chaque li déjà présente dans la collection (dans le cas d'une modification)
-  $(".atelier").each(function () {
+  $(".gestionDuree").each(function () {
     //on génère et ajoute un bouton "supprimer"
     $(this).append(generateDeleteButton());
   });

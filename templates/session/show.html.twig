@@ -41,13 +41,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				{% for programme in session.programmers %}
+			{% for programme in session.programmers %}
+				<tr>
 					<td>{{programme.id}}</td>
 					<td>{{programme.atelier.libelle}}</td>
 					<td>{{programme.duree}}</td>
-				{% endfor %}
-			</tr>
+				</tr>
+			{% endfor %}
 		</tbody>
 	</table>
 	<button class="btn btn-primary">
@@ -55,7 +55,7 @@
 	</button>
 
 	{# participants #}
-	<table class="table">
+	<table class="table" style="margin-top: 25px;">
 		<thead>
 			<tr>
 				<th scope="col">Chiens inscrits</th>
