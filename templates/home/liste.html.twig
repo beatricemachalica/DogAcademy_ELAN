@@ -1,0 +1,27 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}DogAcademy
+{% endblock %}
+
+{% block container %}
+	<h2 class="text-center" style="color:white;">Les formations de DogAcademy</h2>
+	<p style="color:white;">Voici les formations proposées par votre centre de formation pour chien DogAcademy. Pour plus d'informations ou vous inscrire veuillez contacter votre centre de formation au :
+		<strong>03.88.27.28.85</strong>
+		ou par mail
+		<strong>contact@dogacademy.fr</strong>
+	</p>
+	<ul class="listeFormation">
+		{% for formation in formations %}
+			<li style="font-weight:bold;">{{ formation.nom |capitalize }}</li>
+			<p>{{ formation.description }}</p>
+		{% endfor %}
+	</ul>
+
+{% endblock %}
+
+{# footer #}
+{% block footer %}
+	<footer class="homeFooter">
+		Terence Mathieu & Béatrice Machalica | Dog Academy | 2021 Mentions légales
+	</footer>
+{% endblock %}

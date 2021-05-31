@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Mime\Email;
 use App\Repository\UserRepository;
 use App\Form\ForgottenPasswordType;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -96,13 +97,16 @@ class SecurityController extends AbstractController
     /**
      * @Route("resetPassword/{token}", name="resetPassword")
      */
-    public function resetPassword(User $user, EntityManagerInterface $manager, Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder, UserRepository $userRepository): Response
+    public function resetPassword(EntityManagerInterface $manager, Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder, UserRepository $userRepository): Response
     {
         $form = $this->createForm(ChangePasswordType::class);
         $form->handleRequest($request);
-        // on va redéfinir le user
 
-        $user = $userRepository->findOneByResetToken($token);
+        // on va redéfinir le user
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        // $user = $userRepository->findOneByResetToken($token);
+        $user = $userRepository->findOneBy([$token]);
+
         if ($form->isSubmitted() && $form->isValid()) {
             if ($request->isMethod('POST')) {
 

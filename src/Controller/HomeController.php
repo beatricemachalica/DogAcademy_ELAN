@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Formation;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -39,6 +40,19 @@ class HomeController extends AbstractController
     {
         return $this->render('home/conditions.html.twig', [
             'data' => 'data',
+        ]);
+    }
+    /**
+     * @Route("/liste", name="liste_formations")
+     */
+    public function liste(): Response
+    {
+        $formations = $this->getDoctrine()
+            ->getRepository(Formation::class)
+            ->findAll();
+
+        return $this->render('home/liste.html.twig', [
+            'formations' => $formations,
         ]);
     }
 }
