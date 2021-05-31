@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!
+{% block title %}Admin
 {% endblock %}
 
-	{% block container %}
+{% block container %}
 
-		<h2>Bonjour {{ actual }}</h2>
+	<h2>Bonjour
+		{{ actual }}</h2>
 
 	<table class="table">
 		<thead>
@@ -34,4 +35,5 @@
 				</tr>
 			{% endfor %}
 
-	{% endblock %}
+		{% endblock %}
+	</tbody>
