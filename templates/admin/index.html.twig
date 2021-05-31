@@ -1,39 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin
+{% block title %}Panneau Admin
 {% endblock %}
 
 {% block container %}
 
-	<h2>Bonjour
-		{{ actual }}</h2>
+<h2>Bonjour,
+	{{ actual |capitalize }}</h2>
+<p>Bienvenue sur le panneau admin.</p>
 
-	<table class="table">
-		<thead>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Nom</th>
+			<th scope="col">Prénom</th>
+			<th scope="col">Adresse mail</th>
+			<th scope="col">Rôle(s)</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in users %}
 			<tr>
-				<th scope="col">Nom</th>
-				<th scope="col">Prénom</th>
-				<th scope="col">Adresse mail</th>
-				<th scope="col">Rôle</th>
-				<th></th>
-				<th></th>
+				<td>{{ user.nom |capitalize}}</td>
+				<td>{{ user.prenom |capitalize}}</td>
+				<td>{{ user.username}}</td>
+				<td>
+					{% for role in user.roles %}
+						{% if role == 'ROLE_ADMIN' %}
+							admin
+						{% else %}
+							utilisateur
+						{% endif %}
+					{% endfor %}
+				</td>
+				<td>
+					<a href="{{ path('user_edit', {id: user.id}) }}">Editer</a>
+				</td>
+				<td>
+					<a href="{{ path('user_delete', {id: user.id}) }}">Supprimer</a>
+				</td>
 			</tr>
-		</thead>
-		<tbody>
-			{% for user in users %}
-				<tr>
-					<td>{{ user.nom}}</td>
-					<td>{{ user.prenom}}</td>
-					<td>{{ user.username}}</td>
-					<td>{{ user.roles[0]}}</td>
-					<td>
-						<a href="{{ path('user_edit', {id: user.id}) }}">Editer</a>
-					</td>
-					<td>
-						<a href="{{ path('user_delete', {id: user.id}) }}">Supprimer</a>
-					</td>
-				</tr>
-			{% endfor %}
-
-		{% endblock %}
+		</td>
 	</tbody>
+</tr>{% endfor %}</tbody>{% endblock %}

@@ -31,7 +31,7 @@ class AdminController extends AbstractController
             ->getRepository(User::class)
             ->findAll();
         return $this->render('admin/index.html.twig', [
-            'actual' => $this->getUser()->getUsername(),
+            'actual' => $this->getUser()->getNom(),
             'users' => $users,
         ]);
     }

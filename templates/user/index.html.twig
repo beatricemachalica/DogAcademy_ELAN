@@ -17,7 +17,6 @@
 				<th scope="col">Nom</th>
 				<th scope="col">Prénom</th>
 				<th scope="col">Adresse mail</th>
-				<th scope="col">Rôle</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -26,18 +25,15 @@
 				<td>{{ app.user.nom |capitalize}}</td>
 				<td>{{ app.user.prenom |capitalize}}</td>
 				<td>{{ app.user.email}}</td>
-				<td>{{ app.user.roles[0]}}</td>
 				<td>
-					<a href="{{path('user_edit', {id: app.user.id})}}">Modifier</a>
+					<a href="{{ path('user_edit', {id: app.user.id} )}}">Modifier</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 
 	{# button(s) #}
-	<button class="btn btn-primary" style="margin:20px 0 20px 0;">
-		<a href="#" style="color:white; text-decoration: none;">Modifier le mot de passe</a>
-	</button>
+	<a href="{{ path('change_password') }}" style="text-decoration: none;">Changer le mot de passe</a>
 
 	<h2>Vos prochaines sessions de formations</h2>
 	{# sessions #}

@@ -8,6 +8,7 @@ use App\Form\ChangePasswordType;
 use Symfony\Component\Mime\Email;
 use App\Repository\UserRepository;
 use App\Form\ForgottenPasswordType;
+use App\Form\NewPasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -127,6 +128,47 @@ class SecurityController extends AbstractController
             'token' => $token,
             'form' => $form->createView(),
             'title' => "Réinitialisation du mot de passe."
+        ]);
+    }
+
+    /**
+     * @Route("/changePassword", name="change_password")
+     */
+    public function change_user_password(User $user = null, EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        $form = $this->createForm(NewPasswordType::class);
+        $form->handleRequest($request);
+
+        // on récupère le user et on vérifie si l'ancien mdp est valide
+        $user = $this->getUser();
+        // $oldPassword = $form->get('old_password');
+        // $checkPass = $passwordEncoder->isPasswordValid($user, $oldPassword);
+
+        $checkPass = true;
+        if ($checkPass === true) {
+            if ($form->isSubmitted() && $form->isValid()) {
+                if ($request->isMethod('POST')) {
+
+                    // on récupère le nouveau mdp dans l'input du form
+                    $newPassword = $form->get('new_password')->getData();
+                    // on set le nouveau password
+                    $user->setPassword(
+                        $passwordEncoder->encodePassword($user, $newPassword)
+                    );
+                    $manager->flush();
+                    // message add flash de confirmation
+                    $this->addFlash('info', 'Votre mot de passe a bien été modifié.');
+                    return $this->redirectToRoute('user_index');
+                }
+            }
+        } else {
+            // return new jsonresponse(array('error' => 'The current password is incorrect.'));
+            // message add flash de confirmation
+            $this->addFlash('info', 'Votre ancien mot de passe ne correspond pas.');
+            return $this->redirectToRoute('user_index');
+        }
+        return $this->render('security/changePassword.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
