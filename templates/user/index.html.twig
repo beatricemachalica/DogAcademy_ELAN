@@ -18,6 +18,7 @@
 				<th scope="col">Prénom</th>
 				<th scope="col">Adresse mail</th>
 				<th scope="col">Rôle</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -26,36 +27,41 @@
 				<td>{{ app.user.prenom |capitalize}}</td>
 				<td>{{ app.user.email}}</td>
 				<td>{{ app.user.roles[0]}}</td>
+				<td>
+					<a href="{{path('user_edit', {id: app.user.id})}}">Modifier</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 
 	{# button(s) #}
 	<button class="btn btn-primary" style="margin:20px 0 20px 0;">
-		<a href="{{path('user_edit', {id: app.user.id})}}" style="color:white; text-decoration: none;">Modifier mes informations</a>
+		<a href="#" style="color:white; text-decoration: none;">Modifier le mot de passe</a>
 	</button>
 
+	<h2>Vos prochaines sessions de formations</h2>
 	{# sessions #}
 	<table class="table">
 		<thead>
 			<tr>
 				<th scope="col">Nom de la Formation</th>
-				<th scope="col">Places restantes</th>
+				<th scope="col">Code de la session</th>
 				<th scope="col">Date de début</th>
 				<th scope="col">Date de fin</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>{# <td>{{ session.formation.nom |capitalize }}</td> #}
-				{# <td>{{ session.nbPlace - session.chien |length }}</td> #}
-				{# <td>{{ session.dateDebut | date('d-m-Y') }}</td> #}
-				{# <td>{{ session.dateFin | date('d-m-Y') }}</td> #}
-			</tr>
+			{% for formation in app.user.formations %}
+				{% for session in formation.Sessions %}
+					<tr>
+						<td>{{ formation.nom |capitalize }}</td>
+						<td>{{ session.id }}</td>
+						<td>{{ session.dateDebut | date('d-m-Y') }}</td>
+						<td>{{ session.dateFin | date('d-m-Y') }}</td>
+
+					</tr>
+				{% endfor %}
+			{% endfor %}
 		</tbody>
 	</table>
-
-	{# button(s) #}
-	<button class="btn btn-primary" style="margin:20px 0 20px 0;">
-		<a href="#" style="color:white; text-decoration: none;">Ajouter des sessions</a>
-	</button>
 {% endblock %}

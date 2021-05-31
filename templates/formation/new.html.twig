@@ -18,9 +18,17 @@
 
 	{{form_row(formAddFormation.nom)}}
 	{{form_row(formAddFormation.description)}}
+		<ul id="users" data-prototype="{{ form_row(formAddFormation.users.vars.prototype)|e }}"> {% for user in formAddFormation.users %}
+			<li class="user">
+				{{ form_row(user) }}
+			</li>
+		{% endfor %}
+
+	</ul>
 
 	{# submit button #}
-		<button type="submit" class="btn btn-outline-primary"> {% if editMode %}
+	<button type="submit" class="btn btn-outline-primary">
+		{% if editMode %}
 			Modifier
 		{% else %}
 			Ajouter
@@ -30,4 +38,8 @@
 	{# fin du formulaire #}
 	{{form_end(formAddFormation)}}
 
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="/js/collectionHandlerFormation.js"></script>
 {% endblock %}
