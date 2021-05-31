@@ -39,9 +39,15 @@ class Formation
      */
     private $img;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="formations")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->Sessions = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,6 +117,33 @@ class Formation
     public function setImg(?string $img): self
     {
         $this->img = $img;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFormation($this);
+        }
 
         return $this;
     }
