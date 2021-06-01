@@ -57,7 +57,6 @@ class SecurityController extends AbstractController
         // on va instancier la variable form
         $form = $this->createForm(ForgottenPasswordType::class);
 
-        //handleRequest = 
         $form->handleRequest($request);
 
         $email = $form->get('emailResetPassword')->getData();
@@ -138,19 +137,22 @@ class SecurityController extends AbstractController
     {
         $form = $this->createForm(NewPasswordType::class);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         // on récupère le user et on vérifie si l'ancien mdp est valide
-        $user = $this->getUser();
-        // $oldPassword = $form->get('old_password');
+        // dd($passwordEncoder->isPasswordValid($user, $oldPassword));
+        // dd($oldPassword);
+        // $checkPass = $passwordEncoder->isPasswordValid($user, $oldPassword);
         // $checkPass = $passwordEncoder->isPasswordValid($user, $oldPassword);
 
-        $checkPass = true;
-        if ($checkPass === true) {
-            if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd('test');
+            $oldPassword = $request->get('new_password')['old_password'];
+            if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
                 if ($request->isMethod('POST')) {
-
                     // on récupère le nouveau mdp dans l'input du form
                     $newPassword = $form->get('new_password')->getData();
+                    // $newPassword = $form->getData();
                     // on set le nouveau password
                     $user->setPassword(
                         $passwordEncoder->encodePassword($user, $newPassword)
@@ -160,14 +162,14 @@ class SecurityController extends AbstractController
                     $this->addFlash('info', 'Votre mot de passe a bien été modifié.');
                     return $this->redirectToRoute('user_index');
                 }
+            } else {
+                // return new jsonresponse(array('error' => 'The current password is incorrect.'));
+                // message add flash de confirmation
+                $this->addFlash('info', 'Votre ancien mot de passe ne correspond pas.');
+                return $this->redirectToRoute('user_index');
             }
-        } else {
-            // return new jsonresponse(array('error' => 'The current password is incorrect.'));
-            // message add flash de confirmation
-            $this->addFlash('info', 'Votre ancien mot de passe ne correspond pas.');
-            return $this->redirectToRoute('user_index');
         }
-        return $this->render('security/changePassword.html.twig', [
+        return $this->render('security/newPassword.html.twig', [
             'form' => $form->createView(),
         ]);
     }

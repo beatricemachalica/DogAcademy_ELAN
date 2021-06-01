@@ -12,14 +12,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/sessions")
+ */
 class SessionController extends AbstractController
 {
     /**
-     * @Route("/sessions", name="sessions_index")
+     * @Route("/", name="sessions_index")
      */
     public function index(): Response
     {
-        // la function index va afficher la liste des sessions
+        // la fonction index va afficher la liste des sessions
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         // denyAccessUnlessGranted : permet de refuser un accès à l'intérieur d'un controleur
         // ici si l'utilisateur n'est pas connecté = IS_AUTHENTICATED_FULLY
@@ -42,22 +45,31 @@ class SessionController extends AbstractController
      */
     public function new(Request $request, Session $session = null): Response
     {
+        // la fonction new ajoute ou modifie une session de formation
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // denyAccessUnlessGranted : permet de refuser un accès à l'intérieur d'un controleur
         if (!$session) {
             $session = new Session();
         }
-
+        // création du formulaire à partir de la classe SessionType
         $form = $this->createForm(SessionType::class, $session);
-
         $form->handleRequest($request);
+        // handleRequest() = read data off of the correct PHP superglobals (i.e. $_POST or $_GET) 
+        // based on the HTTP method configured on the form (POST is default).
+
         if ($form->isSubmitted() && $form->isValid()) {
-
+            // si le formulaire est valide et soumis on récupère les données
             $session = $form->getData();
-
+            // on communique avec la doctrine puis le manager :
+            // "The $this->getDoctrine()->getManager() method gets Doctrine’s entity manager object, 
+            // which is the most important object in Doctrine. 
+            // It’s responsible for saving objects to, and fetching objects from, the database."
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($session);
+            // tells Doctrine to “manage” the $session object
             $entityManager->flush();
-
+            // if data needs to be persisted to the database =
+            // an INSERT query create a new row in the table
             return $this->redirectToRoute('sessions_index');
         }
 
@@ -73,10 +85,13 @@ class SessionController extends AbstractController
      */
     public function delete(Session $session): Response
     {
+        // la fonction delete va supprimer une session
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($session);
+        // the remove() method notifies Doctrine that you’d like to remove the given object from the database.
         $entityManager->flush();
+        // The DELETE query isn’t actually executed until the flush() method is called.
 
         return $this->redirectToRoute('sessions_index');
     }
@@ -87,36 +102,33 @@ class SessionController extends AbstractController
      */
     public function addAtelierToSession(Request $request, Session $session, EntityManagerInterface $entityManager): Response
     {
+        // cette fonction va ajouter un programme (un atelier et sa duree à une session)
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
         $form2 = $this->createForm('App\Form\AteliersType', $session);
-
         $form2->handleRequest($request);
         if ($form2->isSubmitted() && $form2->isValid()) {
-
-            // not needed :
-            // $session = $form2->getData();
-            // in paramconverter :
-            // $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($session);
             $entityManager->flush();
-
             return $this->redirectToRoute('sessions_index');
         }
-
         return $this->render('programmer/addDuree.html.twig', [
             'form' => $form2->createView(),
             'session' => $session,
-            // 'editMode' => $session->getId() !== null
         ]);
     }
+
+    // il est préférable de laisser la fonction "show" à la fin du controleur
+    // en effet, le système de routing risque de rencontrer des conflits
+    // car l'{id} requis peut être "confondu"
 
     /**
      * @Route("/{id}", name="session_show")
      */
     public function show(Session $session): Response
     {
+        // cette fonction a pour but de montrer les détails d'une session
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        // redirection vers une page consacrée uniquement à une session précise
         return $this->render('session/show.html.twig', [
             'session' => $session
         ]);

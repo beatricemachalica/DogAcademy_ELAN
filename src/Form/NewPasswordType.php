@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\User;
+// use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
@@ -16,11 +16,11 @@ class NewPasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // ->add('old_password', PasswordType::class, [
-            //     'label' => 'Ancien mot de passe'
-            // ])
+            ->add('old_password', PasswordType::class, [
+                'label' => 'Ancien mot de passe'
+            ])
             ->add('new_password', RepeatedType::class, [
-                'type' => passwordType::class,
+                'type' => PasswordType::class,
                 'mapped' => false,
                 'first_options' => array('label' => 'Nouveau mot de passe'),
                 'second_options' => array('label' => 'Confirmation du nouveau mot de passe'),
@@ -37,10 +37,10 @@ class NewPasswordType extends AbstractType
             ->add('Valider', SubmitType::class);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
-    }
+    // public function configureOptions(OptionsResolver $resolver)
+    // {
+    //     $resolver->setDefaults([
+    //         'data_class' => User::class,
+    //     ]);
+    // }
 }

@@ -73,7 +73,12 @@
 			{% endblock %}
 
 			{# footer #}
-			{% block footer %}{% endblock %}
+			{% block footer %}
+				<footer class="homeFooter">
+					<a href="{{path('conditions')}}" style="color:white;">
+						Conditions d'utilisation</a>, Terence Mathieu & Béatrice Machalica | Dog Academy | 2021 Mentions légales
+				</footer>
+			{% endblock %}
 		</div>
 	</body>
 </html>

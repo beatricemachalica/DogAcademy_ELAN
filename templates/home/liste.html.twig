@@ -10,18 +10,28 @@
 		ou par mail
 		<strong>contact@dogacademy.fr</strong>
 	</p>
-	<ul class="listeFormation">
-		{% for formation in formations %}
-			<li style="font-weight:bold;">{{ formation.nom |capitalize }}</li>
-			<p>{{ formation.description }}</p>
-		{% endfor %}
-	</ul>
 
-{% endblock %}
+	{# liste des formations du centre #}
+	<table class="table listeFormation">
+		<thead>
+			<tr>
+				<th scope="col">Titre de la formation</th>
+				<th scope="col">Intervenant(s)</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for formation in formations %}
+				<tr>
+					<td>{{ formation.nom |capitalize }}</td>
+					{% for user in formation.users %}
+						<td>
+							{{ user.prenom |capitalize ~ ' ' ~ user.nom |capitalize }}
+						</td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-{# footer #}
-{% block footer %}
-	<footer class="homeFooter">
-		Terence Mathieu & Béatrice Machalica | Dog Academy | 2021 Mentions légales
-	</footer>
 {% endblock %}
