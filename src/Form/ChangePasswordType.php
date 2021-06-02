@@ -33,7 +33,11 @@ class ChangePasswordType extends AbstractType
                         'max' => 32,
                         'maxMessage' => "Veuillez mettre moins de {{ limit }} caractères.",
                     ]),
-                    new Regex("/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%-])(?!.*(.)\1{2}).*[a-z]/m"),
+                    new Regex([
+                        'pattern' => "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%-])(?!.*(.)\1{2}).*[a-z]/m",
+                        'match' => true,
+                        'message' => "Attention : Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole."
+                    ])
                 ],
             ])
             ->add('Valider', SubmitType::class);

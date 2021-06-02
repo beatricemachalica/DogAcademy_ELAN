@@ -110,6 +110,10 @@ form {
 .littleForm {
   width: 55%;
   margin: auto;
+  color: white !important;
+}
+.text-muted {
+  color: white !important;
 }
 .loginForm,
 .registerForm {

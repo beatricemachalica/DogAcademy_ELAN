@@ -4,11 +4,11 @@
 {% endblock %}
 
 {% block container %}
-	<div class="container">
-		{% for flashError in app.flashes('verify_email_error') %}
-			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
-		{% endfor %}
 
+	{% for flashError in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+	{% endfor %}
+	<div class="littleForm">
 		<h1 class="text-center" style="color:white;">Inscription</h1>
 		<div class="registerForm">
 			{{ form_start(registrationForm) }}
@@ -25,4 +25,5 @@
 			{{ form_end(registrationForm) }}
 		</div>
 	</div>
+
 {% endblock %}
