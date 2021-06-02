@@ -17,7 +17,8 @@ class NewPasswordType extends AbstractType
     {
         $builder
             ->add('old_password', PasswordType::class, [
-                'label' => 'Ancien mot de passe'
+                'label' => 'Ancien mot de passe',
+                'mapped' => false,
             ])
             ->add('new_password', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -27,11 +28,12 @@ class NewPasswordType extends AbstractType
                 'invalid_message' => 'Les mots de passe ne correspondent pas.',
                 'constraints' => [
                     new Length([
-                        'min' => 6,
+                        'min' => 8,
                         'minMessage' => "Veuillez mettre plus de {{ limit }} caractères.",
                         'max' => 15,
                         'maxMessage' => "Veuillez mettre moins de {{ limit }} caractères.",
-                    ])
+                    ]),
+                    // 'required' => true,
                 ]
             ])
             ->add('Valider', SubmitType::class);
