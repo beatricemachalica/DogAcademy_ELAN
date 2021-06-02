@@ -4,12 +4,13 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
 
 class ChangePasswordType extends AbstractType
 {
@@ -19,17 +20,21 @@ class ChangePasswordType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => passwordType::class,
                 'mapped' => false,
-                'first_options' => array('label' => 'Nouveau mot de passe'),
+                'first_options' => array(
+                    'label' => 'Nouveau mot de passe',
+                    'help' => 'Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole.',
+                ),
                 'second_options' => array('label' => 'Confirmation du nouveau mot de passe'),
                 'invalid_message' => 'Les mots de passe ne correspondent pas.',
                 'constraints' => [
                     new Length([
-                        'min' => 6,
+                        'min' => 8,
                         'minMessage' => "Veuillez mettre plus de {{ limit }} caractères.",
-                        'max' => 15,
+                        'max' => 32,
                         'maxMessage' => "Veuillez mettre moins de {{ limit }} caractères.",
-                    ])
-                ]
+                    ]),
+                    new Regex("/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%-])(?!.*(.)\1{2}).*[a-z]/m"),
+                ],
             ])
             ->add('Valider', SubmitType::class);
     }

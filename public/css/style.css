@@ -73,7 +73,7 @@ header {
 /* banner */
 .bannerFigure {
   position: relative;
-  width: 65%;
+  width: 60%;
   margin: auto;
 }
 .banner {
@@ -106,6 +106,10 @@ header {
 /* forms */
 form {
   padding: 20px 0 25px 0;
+}
+.littleForm {
+  width: 55%;
+  margin: auto;
 }
 .loginForm,
 .registerForm {
