@@ -3,19 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\NewPasswordType;
+use App\Entity\PasswordUpdate;
 use Doctrine\ORM\EntityManager;
 use App\Form\ChangePasswordType;
+use App\Form\PasswordUpdateType;
 use Symfony\Component\Mime\Email;
 use App\Repository\UserRepository;
 use App\Form\ForgottenPasswordType;
-use App\Form\NewPasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
@@ -131,45 +135,43 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/changePassword", name="change_password")
+     * modifier le mdp
+     * 
+     * @IsGranted("ROLE_USER")
+     * 
+     * @Route("/passwordUpdate", name="update_password")
      */
-    public function change_user_password(User $user = null, EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function update_user_password(EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        $form = $this->createForm(NewPasswordType::class);
-        $form->handleRequest($request);
+        // Dans Symfony le $this->getUser permet de récupèrer le user connecté
         $user = $this->getUser();
 
-        // on récupère le user et on vérifie si l'ancien mdp est valide
-        // dd($passwordEncoder->isPasswordValid($user, $oldPassword));
-        // dd($oldPassword);
-        // $checkPass = $passwordEncoder->isPasswordValid($user, $oldPassword);
-        // $checkPass = $passwordEncoder->isPasswordValid($user, $oldPassword);
+        $passwordUpdate = new PasswordUpdate;
+
+        $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
+
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dd('test');
-            $oldPassword = $request->get('new_password')['old_password'];
-            if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
-                if ($request->isMethod('POST')) {
-                    // on récupère le nouveau mdp dans l'input du form
-                    $newPassword = $form->get('new_password')->getData();
-                    // $newPassword = $form->getData();
-                    // on set le nouveau password
-                    $user->setPassword(
-                        $passwordEncoder->encodePassword($user, $newPassword)
-                    );
-                    $manager->flush();
-                    // message add flash de confirmation
-                    $this->addFlash('info', 'Votre mot de passe a bien été modifié.');
-                    return $this->redirectToRoute('user_index');
-                }
+            // on va vérifier que l'ancien mdp du formulaire correspond bien à celui de l'utilisateur
+            if (!password_verify($passwordUpdate->getOldPassword(), $user->getPassword())) {
+                // message d'erreur
+                $form->get('old_password')->addError(new FormError("Le mot de passe n'est pas bon."));
             } else {
-                // return new jsonresponse(array('error' => 'The current password is incorrect.'));
+                $newPassword = $passwordUpdate->getNewPassword();
+                $password = $passwordEncoder->encodePassword($user, $newPassword);
+
+                $user->setPassword($password);
+
+                $manager->persist($user);
+                $manager->flush();
                 // message add flash de confirmation
-                $this->addFlash('info', 'Votre ancien mot de passe ne correspond pas.');
+                $this->addFlash('info', 'Le mdp a bien été changé.');
                 return $this->redirectToRoute('user_index');
             }
         }
-        return $this->render('security/newPassword.html.twig', [
+
+        return $this->render('security/updatePassword.html.twig', [
             'form' => $form->createView(),
         ]);
     }
