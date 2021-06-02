@@ -100,6 +100,8 @@ class SecurityController extends AbstractController
         ]);
     }
     /**
+     * Mot de passe oublié
+     * 
      * @Route("resetPassword/{token}", name="resetPassword")
      */
     public function resetPassword(User $user = null, EntityManagerInterface $manager, Request $request, string $token, UserPasswordEncoderInterface $passwordEncoder, UserRepository $userRepository): Response
@@ -135,7 +137,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * modifier le mdp
+     * Pour modifier le mdp via le compte utilisateur
      * 
      * @IsGranted("ROLE_USER")
      * 
@@ -165,6 +167,7 @@ class SecurityController extends AbstractController
 
                 $manager->persist($user);
                 $manager->flush();
+
                 // message add flash de confirmation
                 $this->addFlash('info', 'Le mdp a bien été changé.');
                 return $this->redirectToRoute('user_index');
