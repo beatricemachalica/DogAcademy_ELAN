@@ -108,12 +108,11 @@ form {
   padding: 20px 0 25px 0;
 }
 .littleForm {
-  width: 55%;
+  width: 65%;
   margin: auto;
-  color: white !important;
 }
 .text-muted {
-  color: white !important;
+  color: black !important;
 }
 .loginForm,
 .registerForm {
