@@ -98,7 +98,6 @@ class SessionController extends AbstractController
 
     /**
      * @Route("/addDuree/{id}", name="addAtelierToSession")
-     * @IsGranted("ROLE_ADMIN")
      */
     public function addAtelierToSession(Request $request, Session $session, EntityManagerInterface $entityManager): Response
     {

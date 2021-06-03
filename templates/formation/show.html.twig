@@ -60,10 +60,12 @@
 	</table>
 
 	{# buttons #}
-	<button class="btn btn-primary">
-		<a href="{{ path('session_add') }}" style="color:white; text-decoration: none;">Ajouter une Session</a>
-	</button>
-	<button class="btn btn-primary">
-		<a href="{{ path('formation_edit', {id: formation.id}) }}" style="color:white; text-decoration: none;">Modifier la formation</a>
-	</button>
+	{% if is_granted("ROLE_ADMIN") %}
+		<button class="btn btn-primary">
+			<a href="{{ path('session_add') }}" style="color:white; text-decoration: none;">Ajouter une Session</a>
+		</button>
+		<button class="btn btn-primary">
+			<a href="{{ path('formation_edit', {id: formation.id}) }}" style="color:white; text-decoration: none;">Modifier la formation</a>
+		</button>
+	{% endif %}
 {% endblock %}
