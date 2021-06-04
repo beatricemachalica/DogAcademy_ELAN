@@ -1,0 +1,37 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Contact
+{% endblock %}
+
+{% block container %}
+	<div class="littleForm">
+		<h1 class="text-center" style="color:white;">Contact</h1>
+		{# addFlash message #}
+		<div>
+			{% for label, flashes in app.session.flashbag.all %}
+				{% for flash in flashes %}
+					{% if ( label == 'success' ) %}
+						<div class="alert alert-success alert-dismissible fade show">
+							{{ flash }}
+						</div>
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		</div>
+		{# contact form #}
+		<div
+			class="registerForm">
+			{# formulaire de contact #}
+			{{ form_start(form) }}
+			{# nom #}
+			{{ form_row(form.fullName, {'attr': {'class': 'form-control'}}) }}
+			{# mail #}
+			{{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+			{# message #}
+			{{ form_row(form.message, {'attr': {'class': 'form-control'}}) }}
+			{# submit #}
+			<input type="submit" value="Envoyer" class="btn btn-secondary">
+			{{ form_end(form) }}
+		</div>
+	</div>
+</div>{% endblock %}
