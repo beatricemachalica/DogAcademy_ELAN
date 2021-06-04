@@ -7,9 +7,10 @@
 	<h1 class="text-center">Liste des Sessions</h1>
 
 	<p>Cliquez sur une session pour inscrire des nouveaux participants ou avoir plus d'informations.</p>
-
-	<a href="{{ path('session_add') }}">Ajouter une session</a>
-
+	{# add button #}
+	<button class="btn btn-primary myButton">
+		<a href="{{ path('session_add') }}" class="myButton">Ajouter une session</a>
+	</button>
 	<table class="table">
 		<thead>
 			<tr>
@@ -39,4 +40,5 @@
 			{% endfor %}
 		</tbody>
 	</table>
+
 {% endblock %}

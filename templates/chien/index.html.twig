@@ -5,7 +5,13 @@
 
 {% block container %}
 	<h1 class="text-center">Liste des Chiens inscrits</h1>
-	<a href="{{ path('chien_add') }}">Ajouter un chien</a>
+
+	{# add button #}
+	<button class="btn btn-primary myButton">
+		<a href="{{ path('chien_add') }}" class="myButton">Ajouter un chien</a>
+	</button>
+
+	{# table #}
 	<table class="table">
 		<thead>
 			<tr>

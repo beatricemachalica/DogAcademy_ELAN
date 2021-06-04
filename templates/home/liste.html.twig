@@ -5,10 +5,17 @@
 
 {% block container %}
 	<h2 class="text-center" style="color:white;">Les formations de DogAcademy</h2>
-	<p style="color:white;">Voici les formations proposées par votre centre de formation pour chien DogAcademy. Pour plus d'informations ou vous inscrire veuillez contacter votre centre de formation au :
+	<p style="color:white;">Voici les formations proposées par votre centre de formation pour chien
+		<strong>DogAcademy</strong>. Pour plus d'informations ou vous inscrire veuillez contacter votre centre de formation au :
 		<strong>03.88.27.28.85</strong>
-		ou par mail
-		<strong>contact@dogacademy.fr</strong>
+		ou envoyez nous un message via la rubrique
+		<strong>
+			<u>
+				<a href="{{path('contact')}}" style="color:white;">
+					contact
+				</a>
+			</u>
+		</strong>.
 	</p>
 
 	{# liste des formations du centre #}
