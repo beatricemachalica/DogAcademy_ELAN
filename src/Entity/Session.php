@@ -7,6 +7,7 @@ use App\Repository\SessionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Formation;
 
 /**
  * @ORM\Entity(repositoryClass=SessionRepository::class)
@@ -162,5 +163,10 @@ class Session
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->formation->getNom();
     }
 }

@@ -6,10 +6,17 @@
 
     <br>
     <div class="container">
-        <div class="grid">
-            {% for session in sessions %}
-                {% include 'session/_card.html.twig' with {session: session} only %}
-            {% endfor %}
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'search/_filter.html.twig' with {form: form} only %}
+            </div>
+            <div class="col-md-9">
+                <div class="grid">
+                    {% for session in sessions %}
+                        {% include 'session/_card.html.twig' with {session: session} only %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 
