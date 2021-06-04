@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes nos sessions{% endblock %}
+
+{% block container %}
+
+    <br>
+    <div class="container">
+        <div class="grid">
+            {% for session in sessions %}
+                {% include 'session/_card.html.twig' with {session: session} only %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

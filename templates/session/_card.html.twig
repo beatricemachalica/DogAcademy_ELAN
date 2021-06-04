@@ -1,0 +1,9 @@
+<div class="card">
+  <img src="{{ asset('img/' ~ session.formation.img) }}" alt="" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{ session.formation.nom }}</h5>
+    <div class="card-title" style="font-weight: bold">{{ session.dateDebut | date('d-m-Y') }} - {{ session.dateFin | date('d-m-Y') }}</div>
+    <div class="card-title">Places restantes : {{ session.nbPlace - session.chien |length }}</div>
+    <p class="text text-muted">{{ session.formation.description }}</p>
+  </div>
+</div>

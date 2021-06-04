@@ -151,3 +151,11 @@ footer {
   position: absolute;
   bottom: 0;
 }
+
+/* Barre de recherche */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
