@@ -58,19 +58,33 @@ class SessionController extends AbstractController
         // based on the HTTP method configured on the form (POST is default).
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // si le formulaire est valide et soumis on récupère les données
-            $session = $form->getData();
-            // on communique avec la doctrine puis le manager :
-            // "The $this->getDoctrine()->getManager() method gets Doctrine’s entity manager object, 
-            // which is the most important object in Doctrine. 
-            // It’s responsible for saving objects to, and fetching objects from, the database."
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($session);
-            // tells Doctrine to “manage” the $session object
-            $entityManager->flush();
-            // if data needs to be persisted to the database =
-            // an INSERT query create a new row in the table
-            return $this->redirectToRoute('sessions_index');
+
+            // Si le formulaire est valide et soumis on récupère les données
+            // D'abord, on récupère les dates de début et de fin
+            $dateDebut = $form->get('dateDebut')->getData();
+            $dateFin = $form->get('dateFin')->getData();
+
+            // Si la date de fin est inférieur à la date de début on renvoie un message d'erreur
+            if ($dateDebut > $dateFin) {
+                $this->addFlash('error', 'Attention : la date de fin ne peut pas être antérieure à la date de début.');
+            } elseif ($session->getNbPlace() < count($form->get('chien')->getData())) {
+                //On vérifie que le nombre de place disponible n'est pas dépassé
+                $this->addFlash('error', 'Vous ne pouvez pas inscrire plus de ' . $session->getNbPlace() . ' chiens pour cette session');
+            } else {
+                // enfin, si les paramètres précédents sont bons on peut ajouter ou modifier la session
+                $session = $form->getData();
+                // on communique avec la doctrine puis le manager :
+                // "The $this->getDoctrine()->getManager() method gets Doctrine’s entity manager object, 
+                // which is the most important object in Doctrine. 
+                // It’s responsible for saving objects to, and fetching objects from, the database."
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($session);
+                // tells Doctrine to “manage” the $session object
+                $entityManager->flush();
+                // if data needs to be persisted to the database =
+                // an INSERT query create a new row in the table
+                return $this->redirectToRoute('sessions_index');
+            }
         }
 
         return $this->render('session/new.html.twig', [

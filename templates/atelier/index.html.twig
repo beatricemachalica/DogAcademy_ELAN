@@ -5,7 +5,10 @@
 
 {% block container %}
 	<h1 class="text-center">Liste des Ateliers</h1>
-	<a href="{{ path('atelier_add') }}">Ajouter un atelier</a>
+	{# add button #}
+	<button class="btn btn-primary myButton">
+		<a href="{{ path('atelier_add') }}" class="myButton">Ajouter un atelier</a>
+	</button>
 	<table class="table">
 		<thead>
 			<tr>
@@ -29,4 +32,5 @@
 			{% endfor %}
 		</tbody>
 	</table>
+
 {% endblock %}

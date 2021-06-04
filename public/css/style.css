@@ -135,6 +135,11 @@ form {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.myButton {
+  color: white !important;
+  text-decoration: none !important;
+  margin-bottom: 20px !important;
+}
 /* footers */
 footer {
   width: 100%;
