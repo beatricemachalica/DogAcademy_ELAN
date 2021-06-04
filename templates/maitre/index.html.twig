@@ -3,7 +3,12 @@
 {% block container %}
 	<h1 class="text-center">Liste des Maîtres inscrits</h1>
 
-	<a href="{{ path('maitre_add') }}">Ajouter un nouveau maitre</a>
+	{# add button #}
+	<button class="btn btn-primary myButton">
+		<a href="{{ path('maitre_add') }}" class="myButton">Ajouter un maitre</a>
+	</button>
+
+	{# table #}
 	<table class="table">
 		<thead>
 			<tr>
